@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koffiart37 - Portfolio</title>
+
+<!-- SEO Meta Tags -->
+<meta name="description" id="meta-desc" content="Koffiart37 portfolio - digital art, concept art, illustration and 3D animation.">
+<meta property="og:title" id="og-title" content="Koffiart37 - Portfolio">
+<meta property="og:description" id="og-desc" content="Digital art, concept art, illustration and 3D animation.">
+<meta property="og:image" id="og-image" content="https://picsum.photos/1200/630?random=999">
+<meta property="og:url" id="og-url" content="">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" id="tw-title" content="Koffiart37 - Portfolio">
+<meta name="twitter:description" id="tw-desc" content="Digital art, concept art, illustration and 3D animation.">
+<meta name="twitter:image" id="tw-image" content="https://picsum.photos/1200/630?random=999">
+<link rel="canonical" id="canonical" href="">
+
+<!-- External Libraries -->
+<script src="https://gumroad.com/js/gumroad.js" async></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+/* ============ CINEMATIC NEON-NOIR PALETTE ============ */
+:root{
+  --bg:#07070d; --surface:#0e0e18; --surface-2:#15151f;
+  --border:rgba(255,255,255,.07); --border-2:rgba(255,255,255,.13);
+  --text:#ececf3; --muted:#9b9bad; --faint:#67677a;
+  --accent:#7c5cff; --accent-2:#00d4ff; --magenta:#b14bff;
+  --danger:#ff5e7d; --ok:#2ee6a6; --lt:#32d74b; --gold:#ffcf6b;
+  --grad:linear-gradient(135deg,#7c5cff 0%,#b14bff 48%,#00d4ff 100%);
+  --shadow:0 16px 60px rgba(0,0,0,.7);
+  --glow:0 0 0 1px rgba(124,92,255,.5),0 10px 34px rgba(124,92,255,.3);
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.65;color:var(--text);
+  background:radial-gradient(1200px 700px at 80% -10%,rgba(124,92,255,.16),transparent 60%),
+    radial-gradient(1000px 600px at -10% 110%,rgba(0,212,255,.12),transparent 60%),var(--bg);
+  background-attachment:fixed;min-height:100vh;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img,video,iframe{display:block;max-width:100%}
+.container{max-width:1200px;margin:0 auto;padding:0 22px}
+.hidden{display:none !important}
+::selection{background:var(--accent);color:#fff}
+
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad);z-index:10000;transition:width .1s linear}
+
+.fx-grain{position:fixed;inset:-50%;z-index:50;pointer-events:none;opacity:.06;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  animation:grain 7s steps(8) infinite}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(2%,-3%)}50%{transform:translate(3%,1%)}75%{transform:translate(-1%,3%)}100%{transform:translate(0,0)}}
+.fx-vignette{position:fixed;inset:0;z-index:50;pointer-events:none;background:radial-gradient(130% 120% at 50% 42%,transparent 52%,rgba(0,0,0,.5) 88%,rgba(0,0,0,.72) 100%)}
+.fx-scan{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.035;background:repeating-linear-gradient(0deg,#000 0 1px,transparent 1px 3px)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(7,7,13,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.navbar .container{display:flex;justify-content:space-between;align-items:center;height:68px}
+.logo h1{font-size:1.5rem;font-weight:800;letter-spacing:.5px}
+.logo a{cursor:pointer;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 14px rgba(124,92,255,.45))}
+.nav-right{display:flex;align-items:center;gap:8px}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-links a{color:var(--muted);font-weight:600;font-size:.95rem;padding:8px 14px;border-radius:9px;cursor:pointer;transition:.25s}
+.nav-links a:hover{color:#fff;background:rgba(124,92,255,.1);text-shadow:0 0 12px rgba(0,212,255,.6)}
+.btn-login{background:var(--grad) !important;color:#fff !important;font-weight:800 !important;box-shadow:0 6px 20px rgba(124,92,255,.4)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+.hamburger span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+.custom-pages{display:contents}
+.nav-links li.has-sub{position:relative}
+.caret{font-size:.62em;margin-left:7px;display:inline-block;transition:transform .25s;opacity:.8}
+.has-sub.open > a .caret{transform:rotate(180deg)}
+.sub-menu{display:none;position:absolute;top:100%;left:0;min-width:200px;background:rgba(14,14,24,.97);backdrop-filter:blur(14px);border:1px solid var(--border-2);border-radius:12px;padding:8px;box-shadow:var(--shadow);z-index:60}
+.has-sub.open > .sub-menu{display:block}
+.sub-menu li a{display:block;padding:9px 12px;border-radius:8px;color:var(--muted);font-size:.9rem;cursor:pointer;white-space:nowrap}
+.sub-menu li a:hover{color:#fff;background:rgba(124,92,255,.14)}
+.sub-menu .has-sub > .sub-menu{top:-8px;left:100%}
+
+.admin-nav{background:rgba(10,10,18,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1000}
+.admin-nav .container{display:flex;justify-content:space-between;align-items:center;height:64px;flex-wrap:wrap;gap:8px}
+.admin-nav h2{font-size:1.15rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.admin-nav-links{display:flex;gap:4px;flex-wrap:wrap}
+.admin-nav-links a{color:var(--muted);cursor:pointer;padding:8px 14px;border-radius:9px;font-weight:600;font-size:.92rem;transition:.25s}
+.admin-nav-links a:hover{color:#fff;background:rgba(124,92,255,.12)}
+.admin-nav-links a.active{color:#fff;background:var(--grad);box-shadow:0 6px 18px rgba(124,92,255,.35)}
+
+.btn-primary{display:inline-block;background:var(--grad);color:#fff;padding:13px 30px;border-radius:50px;font-weight:800;border:0;cursor:pointer;font-size:.98rem;transition:.25s;box-shadow:0 8px 26px rgba(124,92,255,.38)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--glow);filter:brightness(1.08)}
+.btn-secondary{background:var(--surface-2);color:var(--text);padding:12px 26px;border-radius:50px;border:1px solid var(--border-2);cursor:pointer;font-weight:700;transition:.25s}
+.btn-secondary:hover{border-color:var(--accent);color:#fff}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border-2);padding:9px 16px;border-radius:9px;cursor:pointer;font-weight:600;transition:.25s}
+.btn-ghost:hover{color:#fff;border-color:var(--accent-2)}
+
+.hero{padding:140px 0 120px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.022) 0 1px,transparent 1px 70px),repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,transparent 1px 70px);mask-image:radial-gradient(760px 460px at 50% 42%,#000,transparent 76%);pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;pointer-events:none;z-index:0}
+.orb-1{width:340px;height:340px;background:radial-gradient(circle,#7c5cff,transparent 70%);top:-60px;left:8%;animation:float1 14s ease-in-out infinite}
+.orb-2{width:300px;height:300px;background:radial-gradient(circle,#00d4ff,transparent 70%);bottom:-80px;right:6%;animation:float2 16s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,30px)}}
+@keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,-30px)}}
+.hero .container{position:relative;z-index:1}
+.hero .tag{display:inline-block;font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent-2);border:1px solid rgba(0,212,255,.35);padding:6px 16px;border-radius:50px;margin-bottom:24px;background:rgba(0,212,255,.06)}
+.hero h2{font-size:clamp(2.4rem,6vw,4.4rem);font-weight:900;line-height:1.04;margin-bottom:18px;background:linear-gradient(180deg,#fff,#c9c9e6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 26px rgba(124,92,255,.5))}
+.hero p{font-size:1.2rem;color:var(--muted);max-width:620px;margin:0 auto 34px}
+.hero .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+.section{padding:96px 0;position:relative}
+.section.alt{background:linear-gradient(180deg,transparent,rgba(124,92,255,.04),transparent)}
+.section-head{text-align:center;margin-bottom:50px}
+.section-head .kicker{font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent-2);font-weight:800}
+.section-title{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:800;margin-top:8px}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:24px}
+.gallery-item{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--surface-2);border:1px solid var(--border);aspect-ratio:1;cursor:pointer;transition:transform .35s,box-shadow .35s,border-color .35s}
+.gallery-item:hover{transform:translateY(-6px);border-color:rgba(124,92,255,.55);box-shadow:var(--glow)}
+.gallery-item .media-fill{position:absolute;inset:0}
+.gallery-item img,.gallery-item video,.gallery-item iframe{width:100%;height:100%;object-fit:cover;background:#000;transition:transform .5s}
+.gallery-item:hover img,.gallery-item:hover video{transform:scale(1.05)}
+.blur-wrap{position:absolute;inset:0;background-size:cover;background-position:center}
+.blur-wrap img.lazy-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s ease}
+.blur-wrap.loaded img.lazy-img{opacity:1}
+.gallery-overlay{position:absolute;left:0;right:0;bottom:0;padding:34px 18px 16px;color:#fff;background:linear-gradient(to top,rgba(2,2,6,.96),rgba(2,2,6,.5) 60%,transparent);transform:translateY(101%);transition:transform .35s;z-index:2}
+.gallery-item:hover .gallery-overlay{transform:translateY(0)}
+.gallery-overlay h3{font-size:1.05rem;font-weight:700}
+.gallery-overlay p{font-size:.85rem;color:var(--muted);margin-top:2px}
+.badge{position:absolute;top:12px;right:12px;background:rgba(2,2,6,.75);backdrop-filter:blur(6px);color:var(--accent-2);font-size:.66rem;padding:4px 9px;border-radius:6px;text-transform:uppercase;letter-spacing:1px;border:1px solid rgba(0,212,255,.3);z-index:3}
+.expand-btn{position:absolute;top:12px;left:12px;width:34px;height:34px;border-radius:9px;border:1px solid rgba(255,255,255,.18);background:rgba(2,2,6,.55);color:var(--text);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.85);transition:.25s;z-index:3}
+.gallery-item:hover .expand-btn{opacity:1;transform:scale(1)}
+.expand-btn:hover{background:var(--accent);border-color:var(--accent)}
+
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:24px}
+.product-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform .35s,box-shadow .35s,border-color .35s;display:flex;flex-direction:column}
+.product-card:hover{transform:translateY(-6px);border-color:rgba(124,92,255,.5);box-shadow:var(--glow)}
+.product-thumb{position:relative;aspect-ratio:4/3;background:var(--surface-2);overflow:hidden}
+.product-thumb img{width:100%;height:100%;object-fit:cover}
+.product-thumb .ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.4rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kind-badge{position:absolute;top:12px;left:12px;background:rgba(2,2,6,.78);backdrop-filter:blur(6px);color:var(--gold);font-size:.64rem;padding:4px 9px;border-radius:6px;text-transform:uppercase;letter-spacing:1px;border:1px solid rgba(255,207,107,.3)}
+.product-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.product-body h3{font-size:1.1rem;font-weight:800}
+.product-body p{font-size:.9rem;color:var(--muted);flex:1}
+.product-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:6px}
+.price-tag{font-size:1.4rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.buy-btn{background:var(--lt);color:#04130a;font-weight:800;padding:10px 20px;border-radius:50px;border:0;cursor:pointer;font-size:.9rem;transition:.25s;box-shadow:0 6px 18px rgba(50,215,75,.3)}
+.buy-btn:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.buy-btn.stripe{background:var(--accent);color:#fff;box-shadow:0 6px 18px rgba(124,92,255,.4)}
+.buy-btn.paypal{background:#ffc439;color:#111}
+.shop-note{max-width:760px;margin:34px auto 0;text-align:center;color:var(--faint);font-size:.85rem}
+
+.about-text{max-width:760px;margin:0 auto;text-align:center;color:var(--muted);font-size:1.12rem}
+.about-text p{margin-bottom:1.3rem}
+.contact-wrap{max-width:760px;margin:0 auto}
+.prose{max-width:820px;margin:0 auto;color:var(--text)}
+.prose h1,.prose h2,.prose h3{margin:1.4em 0 .5em;line-height:1.2;font-weight:800}
+.prose h1{font-size:2rem}.prose h2{font-size:1.5rem}.prose h3{font-size:1.2rem}
+.prose p{margin-bottom:1.1em;color:#d3d7e2}
+.prose a{color:var(--accent-2);text-decoration:underline;text-underline-offset:3px}
+.prose ul,.prose ol{margin:0 0 1.1em 1.3em;color:#d3d7e2}
+.prose li{margin-bottom:.4em}
+.prose img{border-radius:12px;margin:1em 0;border:1px solid var(--border);max-width:100%}
+.prose iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin:1em 0;border:1px solid var(--border)}
+.prose blockquote{border-left:3px solid var(--accent);padding:.4em 1.2em;margin:1em 0;color:var(--muted);background:rgba(124,92,255,.07);border-radius:0 10px 10px 0}
+.page-wrap{padding:64px 0 96px}
+.page-back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-weight:600;margin-bottom:26px;cursor:pointer;transition:.2s}
+.page-back:hover{color:var(--accent-2)}
+.page-title{font-size:clamp(2rem,5vw,3rem);font-weight:900;margin-bottom:8px;background:linear-gradient(180deg,#fff,#c9c9e6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.page-meta{color:var(--faint);font-size:.85rem;margin-bottom:34px;letter-spacing:1px;text-transform:uppercase}
+
+.subs-head{margin:46px 0 14px;color:var(--accent-2);letter-spacing:1.5px;text-transform:uppercase;font-size:.85rem;font-weight:800}
+.acc-item{border:1px solid var(--border);border-radius:12px;background:var(--surface);overflow:hidden;margin-bottom:12px;transition:border-color .25s,box-shadow .25s}
+.acc-item:hover{border-color:rgba(124,92,255,.4)}
+.acc-item.open{box-shadow:0 0 26px rgba(124,92,255,.12)}
+.acc-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none;transition:background .2s}
+.acc-head:hover{background:rgba(124,92,255,.05)}
+.acc-head h4{font-size:1rem;font-weight:700}
+.acc-head .right{display:flex;align-items:center;gap:12px}
+.acc-open-link{color:var(--accent-2);font-size:1rem;padding:4px 8px;border-radius:6px;transition:.2s;cursor:pointer}
+.acc-open-link:hover{background:rgba(0,212,255,.12)}
+.chev{color:var(--accent);transition:transform .3s;font-size:.9rem}
+.acc-item.open > .acc-head .chev{transform:rotate(180deg)}
+.acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.acc-item.open > .acc-body{grid-template-rows:1fr}
+.acc-inner{overflow:hidden;min-height:0}
+.acc-inner-pad{padding:4px 22px 24px;border-top:1px solid var(--border)}
+.acc-inner .prose{max-width:100%;margin:0}
+.acc-nested{margin-top:18px}
+.acc-nested .acc-item{background:var(--surface-2)}
+
+.footer{background:#040409;border-top:1px solid var(--border);padding:64px 0 30px;color:var(--muted);position:relative}
+.footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--grad);opacity:.5}
+.footer-top{display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:start;margin-bottom:40px}
+@media(max-width:768px){.footer-top{grid-template-columns:1fr;gap:26px}}
+.footer-brand .logo-foot{font-weight:800;font-size:1.4rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
+.footer-brand p{font-size:.92rem;color:var(--muted);max-width:280px}
+.footer-links-grid{display:flex;flex-wrap:wrap;gap:10px}
+.link-card{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:10px;background:var(--surface);border:1px solid var(--border-2);color:var(--muted);font-weight:600;font-size:.84rem;transition:.25s}
+.link-card svg{flex:none}
+.link-card:hover{color:#fff;border-color:var(--accent);transform:translateY(-2px)}
+.link-card.lt{background:var(--lt);border-color:transparent;color:#04130a}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-top:24px;border-top:1px solid var(--border);font-size:.88rem}
+.footer-admin{color:var(--faint);cursor:pointer;transition:.2s}
+.footer-admin:hover{color:var(--accent-2)}
+
+.login-wrapper{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(900px 500px at 50% 0%,rgba(124,92,255,.18),transparent),var(--bg)}
+.login-box{background:var(--surface);border:1px solid var(--border-2);border-radius:18px;box-shadow:var(--shadow);padding:42px;width:100%;max-width:440px}
+.login-box h2{text-align:center;font-size:1.6rem;font-weight:800;margin-bottom:6px}
+.login-box .sub{text-align:center;color:var(--muted);margin-bottom:28px;font-size:.9rem}
+.login-box .hint{text-align:center;color:var(--faint);font-size:.8rem;margin-top:18px}
+.login-box .hint b{color:var(--accent-2)}
+.login-box .reset-link{display:block;text-align:center;margin-top:14px;font-size:.8rem;color:var(--danger);cursor:pointer}
+.login-box .reset-link:hover{text-decoration:underline}
+.code-input{letter-spacing:.5em;text-align:center;font-size:1.5rem !important;font-weight:800}
+.demo-code{border:1px dashed rgba(124,92,255,.5);background:rgba(124,92,255,.07);border-radius:12px;padding:16px;text-align:center;margin-bottom:20px}
+.demo-code .big-code{font-size:2rem;font-weight:900;letter-spacing:.4em;color:var(--accent-2);margin:6px 0}
+.demo-code p{font-size:.78rem;color:var(--muted)}
+
+.form-group{margin-bottom:20px}
+.form-group label{display:block;margin-bottom:8px;font-weight:700;font-size:.92rem}
+.form-group .help{color:var(--faint);font-weight:400;font-size:.82rem}
+.form-control{width:100%;padding:13px 15px;background:var(--surface-2);border:1px solid var(--border-2);border-radius:10px;color:var(--text);font-size:1rem;font-family:inherit;transition:.25s}
+.form-control::placeholder{color:var(--faint)}
+.form-control:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,255,.2)}
+select.form-control{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat}
+select.form-control option{background:var(--surface);color:var(--text)}
+textarea.form-control{resize:vertical;min-height:120px;line-height:1.6}
+.file-upload-area{display:block;border:2px dashed var(--border-2);padding:38px;text-align:center;border-radius:12px;cursor:pointer;transition:.25s;background:var(--surface-2)}
+.file-upload-area:hover{border-color:var(--accent);background:rgba(124,92,255,.06)}
+.file-upload-area input{display:none}
+.file-hint{font-size:.8rem;color:var(--faint);margin-top:8px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.check-row{display:flex;align-items:center;gap:10px;font-weight:600;cursor:pointer}
+.check-row input{width:18px;height:18px;accent-color:var(--accent)}
+@media(max-width:640px){.field-row{grid-template-columns:1fr}}
+
+.admin-container{padding:46px 0;min-height:78vh}
+.admin-container>h1{font-size:1.9rem;font-weight:800;margin-bottom:28px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;margin-bottom:34px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px;text-align:center;transition:.3s}
+.stat-card:hover{border-color:rgba(124,92,255,.45);transform:translateY(-3px)}
+.stat-card h3{color:var(--muted);font-size:.74rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px}
+.stat-number{font-size:2.3rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.actions-row{display:flex;gap:12px;flex-wrap:wrap}
+.settings-block{padding:30px;max-width:880px;margin-bottom:28px}
+.settings-block h2{margin-bottom:6px}
+.settings-block .desc{color:var(--muted);font-size:.9rem;margin-bottom:22px}
+.settings-block h3.sub-h{font-size:.95rem;color:var(--accent-2);text-transform:uppercase;letter-spacing:1.5px;margin:28px 0 14px;padding-top:20px;border-top:1px solid var(--border)}
+.links-admin{display:flex;flex-direction:column;gap:12px;margin-bottom:14px}
+.link-row{display:grid;grid-template-columns:1fr 1.4fr auto;gap:10px;align-items:center}
+.link-row .rm{background:rgba(255,94,125,.14);color:var(--danger);border:1px solid rgba(255,94,125,.3);border-radius:9px;width:42px;height:42px;cursor:pointer;font-size:1.1rem;transition:.2s}
+.link-row .rm:hover{background:var(--danger);color:#fff}
+@media(max-width:640px){.link-row{grid-template-columns:1fr}.link-row .rm{width:100%;height:40px}}
+
+.editor-wrap{border:1px solid var(--border-2);border-radius:12px;overflow:hidden;background:var(--surface-2)}
+.editor-toolbar{display:flex;flex-wrap:wrap;gap:4px;padding:10px 12px;background:var(--surface);border-bottom:1px solid var(--border)}
+.editor-toolbar button{background:transparent;border:1px solid transparent;color:var(--muted);min-width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:.9rem;font-weight:700;display:flex;align-items:center;justify-content:center;transition:.2s;padding:0 10px}
+.editor-toolbar button:hover{background:rgba(124,92,255,.12);color:#fff}
+.editor-toolbar button.active{background:rgba(124,92,255,.2);color:var(--accent-2);border-color:var(--accent)}
+.editor-toolbar .sep{width:1px;height:24px;background:var(--border-2);margin:6px 4px;align-self:center}
+.editor-area{min-height:340px;max-height:60vh;overflow:auto;padding:22px 24px;color:var(--text);font-size:1.02rem;line-height:1.7;outline:none}
+.editor-area:empty::before{content:"Start typing your page content here…";color:var(--faint);pointer-events:none}
+.editor-area h1{font-size:1.8rem;font-weight:800;margin:.8em 0 .4em}
+.editor-area h2{font-size:1.4rem;font-weight:800;margin:.8em 0 .4em}
+.editor-area h3{font-size:1.15rem;font-weight:700;margin:.8em 0 .4em}
+.editor-area p{margin-bottom:.9em}
+.editor-area ul,.editor-area ol{margin:0 0 .9em 1.4em}
+.editor-area img{border-radius:10px;margin:.8em 0;max-width:100%}
+.editor-area a{color:var(--accent-2);text-decoration:underline}
+.editor-area blockquote{border-left:3px solid var(--accent);padding:.3em 1em;margin:.8em 0;color:var(--muted);background:rgba(124,92,255,.07);border-radius:0 8px 8px 0}
+
+.manage-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.manage-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:.3s;position:relative}
+.manage-item:hover{border-color:rgba(124,92,255,.4)}
+.manage-item img,.manage-item video,.manage-item iframe{width:100%;height:170px;object-fit:cover;background:#000}
+.manage-info{padding:14px 16px}
+.manage-info h4{margin-bottom:4px;font-weight:700}
+.manage-info small{color:var(--faint);font-size:.78rem}
+.manage-actions{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--border);flex-wrap:wrap}
+.btn-small{padding:8px 12px;border:0;border-radius:8px;cursor:pointer;font-size:.82rem;font-weight:700;transition:.2s}
+.btn-edit{background:var(--surface-2);color:var(--text);border:1px solid var(--border-2)}
+.btn-edit:hover{border-color:var(--accent);color:#fff}
+.btn-view{background:rgba(0,212,255,.12);color:var(--accent-2);border:1px solid rgba(0,212,255,.3)}
+.btn-eye{background:rgba(255,207,107,.12);color:var(--gold);border:1px solid rgba(255,207,107,.3)}
+.btn-eye:hover{background:rgba(255,207,107,.22)}
+.btn-delete{background:rgba(255,94,125,.14);color:var(--danger);border:1px solid rgba(255,94,125,.3)}
+.btn-delete:hover{background:var(--danger);color:#fff}
+.is-hidden{opacity:.45}
+.is-hidden::after{content:"HIDDEN";position:absolute;top:10px;left:10px;background:var(--gold);color:#1a1200;font-size:.62rem;font-weight:900;letter-spacing:1px;padding:3px 8px;border-radius:6px;z-index:2}
+.empty-state{text-align:center;padding:60px 24px;background:var(--surface);border:1px dashed var(--border-2);border-radius:12px;color:var(--muted);grid-column:1/-1}
+.empty-state h3{color:var(--text);margin-bottom:8px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:24px}
+.pill-badge{display:inline-block;background:rgba(0,212,255,.12);color:var(--accent-2);border:1px solid rgba(0,212,255,.3);font-size:.7rem;padding:2px 8px;border-radius:6px;margin-left:6px;vertical-align:middle}
+
+.lb{position:fixed;inset:0;z-index:5000;display:none;align-items:center;justify-content:center;background:rgba(1,1,3,.97);backdrop-filter:blur(12px);opacity:0;transition:opacity .3s}
+.lb.open{display:flex;opacity:1}
+.lb-bar{position:fixed;left:0;right:0;height:0;background:#000;z-index:5002;transition:height .45s cubic-bezier(.2,.7,.2,1);pointer-events:none;box-shadow:0 0 40px rgba(0,0,0,.8)}
+.lb-bar.top{top:0}.lb-bar.bottom{bottom:0}
+.lb.letterbox.open .lb-bar{height:8vh}
+.lb.letterbox .lb-close{top:calc(8vh + 14px)}
+.lb.letterbox .lb-lb{top:calc(8vh + 14px)}
+.lb.letterbox .lb-download{top:calc(8vh + 14px)}
+.lb-stage{position:relative;max-width:92vw;max-height:84vh;display:flex;align-items:center;justify-content:center;transform:scale(.94);transition:transform .3s;z-index:5001}
+.lb.open .lb-stage{transform:scale(1)}
+.lb-media{max-width:92vw;max-height:78vh;border-radius:12px;box-shadow:0 30px 90px rgba(0,0,0,.8),0 0 60px rgba(124,92,255,.18);object-fit:contain;background:#000}
+.lb-cap{position:absolute;left:0;right:0;bottom:-46px;text-align:center;color:#e6e9f2}
+.lb-cap h4{font-size:1.05rem;font-weight:700}
+.lb-cap p{font-size:.85rem;color:var(--muted)}
+.lb-count{position:absolute;top:-40px;left:50%;transform:translateX(-50%);color:var(--muted);font-size:.85rem;letter-spacing:2px}
+.lb-btn{position:absolute;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:var(--text);width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:.2s;z-index:5003}
+.lb-btn:hover{background:var(--accent);border-color:var(--accent);transform:scale(1.08)}
+.lb-close{top:22px;right:24px}
+.lb-lb{top:22px;right:80px;font-size:1rem}
+.lb-download{top:22px;right:136px;font-size:1rem}
+.lb-lb.on{background:var(--accent-2);color:#022;border-color:var(--accent-2)}
+.lb-prev{left:22px;top:50%;transform:translateY(-50%)}
+.lb-next{right:22px;top:50%;transform:translateY(-50%)}
+.lb-prev:hover,.lb-next:hover{transform:translateY(-50%) scale(1.08)}
+@media(max-width:640px){.lb-prev{left:8px}.lb-next{right:8px}.lb-btn{width:40px;height:40px}.lb-lb{right:64px}.lb-download{right:104px}}
+
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--surface-2);color:#fff;padding:14px 26px;border-radius:12px;border:1px solid var(--border-2);box-shadow:var(--shadow);z-index:9999;opacity:0;transition:.3s;pointer-events:none;font-weight:600}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.ok{border-color:rgba(46,230,166,.5)}
+.toast.err{border-color:rgba(255,94,125,.5)}
+
+@media(max-width:900px){
+  .hamburger{display:flex}
+  .nav-links{position:absolute;top:68px;left:0;right:0;flex-direction:column;align-items:stretch;gap:2px;background:rgba(7,7,13,.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 22px 22px;display:none}
+  body.menu-open .nav-links{display:flex}
+  body.menu-open .hamburger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  body.menu-open .hamburger span:nth-child(2){opacity:0}
+  body.menu-open .hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .nav-links a{padding:12px 14px}
+  .custom-pages{display:block}
+  .btn-login{text-align:center;margin-top:6px}
+  .sub-menu{position:static;display:none;border:0;box-shadow:none;background:transparent;padding:0 0 0 16px;min-width:0}
+  .has-sub.open > .sub-menu{display:block}
+  .sub-menu .has-sub > .sub-menu{position:static;top:0;left:0}
+  .sub-menu li a{white-space:normal}
+}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scroll-progress"></div>
+<div class="fx-grain"></div><div class="fx-vignette"></div><div class="fx-scan"></div>
+
+<nav class="navbar" id="public-nav">
+  <div class="container">
+    <div class="logo"><h1><a onclick="showView('home')">Koffiart37</a></h1></div>
+    <div class="nav-right">
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-menu">
+        <li><a onclick="showView('home')" class="active">Home</a></li>
+        <li id="nav-gallery-li"><a onclick="scrollToSection('gallery')">Gallery</a></li>
+        <li id="nav-shop-li"><a onclick="scrollToSection('shop')">Shop</a></li>
+        <li id="nav-about-li"><a onclick="scrollToSection('about')">About</a></li>
+        <li id="nav-contact-li"><a onclick="scrollToSection('contact')">Contact</a></li>
+        <li class="custom-pages" id="custom-pages-li"></li>
+        <li><a onclick="showView('login')" class="btn-login">Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<nav class="admin-nav hidden" id="admin-nav">
+  <div class="container">
+    <h2>Koffiart37 Admin</h2>
+    <ul class="admin-nav-links">
+      <li><a onclick="showView('dashboard')" data-nav="dashboard">Dashboard</a></li>
+      <li><a onclick="showView('upload')" data-nav="upload">Upload</a></li>
+      <li><a onclick="showView('manage')" data-nav="manage">Media</a></li>
+      <li><a onclick="showView('shop-admin')" data-nav="shop-admin">Shop</a></li>
+      <li><a onclick="showView('pages')" data-nav="pages">Pages</a></li>
+      <li><a onclick="showView('settings')" data-nav="settings">Settings</a></li>
+      <li><a onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div id="view-home">
+  <section class="hero" id="sec-hero">
+    <span class="orb orb-1"></span><span class="orb orb-2"></span>
+    <div class="container">
+      <span class="tag" id="hero-tag">Portfolio · 3D · Animation</span>
+      <h2><span id="hero-line1">Welcome to</span> <em id="hero-line2">Koffiart37</em></h2>
+      <p id="hero-sub">A dark, focused space for my artwork, illustrations and 3D animations. Less noise, more work.</p>
+      <div class="row">
+        <a class="btn-primary" onclick="scrollToSection('gallery')">View My Work</a>
+        <a class="btn-secondary" onclick="scrollToSection('shop')">Visit the Shop</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="section">
+    <div class="container">
+      <div class="section-head reveal"><span class="kicker">Selected Pieces</span><h2 class="section-title">My Work</h2></div>
+      <div class="gallery-grid" id="public-gallery-grid"></div>
+    </div>
+  </section>
+
+  <section id="shop" class="section alt">
+    <div class="container">
+      <div class="section-head reveal"><span class="kicker">Available Now</span><h2 class="section-title">Shop &amp; Prints</h2></div>
+      <div class="shop-grid" id="public-shop-grid"></div>
+      <p class="shop-note" id="shop-note"></p>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-head reveal"><span class="kicker" id="about-kicker">Who I Am</span><h2 class="section-title" id="about-title">About Me</h2></div>
+      <div class="about-text reveal" id="about-body"></div>
+    </div>
+  </section>
+
+  <section id="contact" class="section alt">
+    <div class="container">
+      <div class="section-head reveal"><span class="kicker">Contact</span><h2 class="section-title">Let’s Work Together</h2></div>
+      <div class="contact-wrap panel reveal" style="padding:30px">
+        <form id="contact-form">
+          <div class="field-row">
+            <div class="form-group"><label>Your Name</label><input id="cf-name" class="form-control" required></div>
+            <div class="form-group"><label>Your Email</label><input id="cf-email" type="email" class="form-control" required></div>
+          </div>
+          <div class="form-group"><label>Message</label><textarea id="cf-message" class="form-control" rows="5" required></textarea></div>
+          <button type="submit" class="btn-primary" id="cf-btn">Send Message</button>
+          <p class="file-hint">This form sends directly to the artist inbox using EmailJS.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top reveal">
+        <div class="footer-brand"><div class="logo-foot">Koffiart37</div><p>Creative Portfolio &amp; Art Gallery. Find me on all platforms below.</p></div>
+        <div class="footer-links-grid" id="footer-links-grid"></div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Koffiart37. All rights reserved.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <a id="resume-link" class="link-card hidden" target="_blank" rel="noopener">📄 Resume / CV</a>
+          <a class="footer-admin" onclick="showView('login')">Admin Login</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div id="view-page" class="hidden">
+  <div class="container page-wrap">
+    <span class="page-back" onclick="showView('home')">← Back to Home</span>
+    <h1 class="page-title reveal" id="page-title"></h1>
+    <div class="page-meta" id="page-meta"></div>
+    <div class="prose reveal" id="page-content"></div>
+    <div id="page-subs-wrap" class="hidden reveal" style="max-width:820px;margin:0 auto">
+      <h3 class="subs-head">Inside this page — click to expand</h3>
+      <div id="page-subs"></div>
+    </div>
+  </div>
+  <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 Koffiart37. All rights reserved.</p><a class="footer-admin" onclick="showView('login')">Admin</a></div></div></footer>
+</div>
+
+<div id="view-login" class="hidden">
+  <div class="login-wrapper"><div class="login-box">
+    <h2>Admin Login</h2><p class="sub">Manage your portfolio, shop, pages &amp; settings</p>
+    <form id="login-form">
+      <div class="form-group"><label>Username</label><input type="text" id="login-user" class="form-control" autocomplete="username" required></div>
+      <div class="form-group"><label>Password</label><input type="password" id="login-pass" class="form-control" autocomplete="current-password" required></div>
+      <button type="submit" class="btn-primary" style="width:100%;border-radius:10px">Login</button>
+    </form>
+    <p class="hint">Default → <b>admin</b> / <b>admin123</b> (change in Settings → Security)</p>
+    <a class="reset-link" id="creds-reset">Trouble logging in? Reset to admin / admin123</a>
+    <p class="hint" style="margin-top:10px"><a href="#" onclick="showView('home');return false" style="color:var(--accent-2)">← Back to Website</a></p>
+  </div></div>
+</div>
+
+<div id="view-twofa" class="hidden">
+  <div class="login-wrapper"><div class="login-box">
+    <h2>Two-Step Verification</h2><p class="sub" id="twofa-sub">Enter the 6-digit code</p>
+    <div id="twofa-demo" class="demo-code hidden"></div>
+    <form id="twofa-form">
+      <div class="form-group"><label>6-digit code</label><input id="twofa-code" class="form-control code-input" inputmode="numeric" maxlength="6" placeholder="••••••" required></div>
+      <button type="submit" class="btn-primary" style="width:100%;border-radius:10px">Verify &amp; Login</button>
+    </form>
+    <div class="actions-row" style="justify-content:center;margin-top:16px">
+      <button class="btn-ghost" id="twofa-resend">Resend code</button><button class="btn-ghost" id="twofa-cancel">Cancel</button>
+    </div>
+    <p class="hint" id="twofa-note"></p>
+  </div></div>
+</div>
+
+<div id="view-dashboard" class="hidden">
+  <div class="admin-container container">
+    <h1>Dashboard</h1>
+    <div id="default-cred-warning" class="panel hidden" style="padding:20px;border-color:rgba(255,94,125,.5);margin-bottom:20px;color:var(--danger);font-weight:700">
+      ⚠️ You are still using the default password. Go to Settings → Login &amp; Security and change it immediately.
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><h3>Images</h3><p class="stat-number" id="stat-img">0</p></div>
+      <div class="stat-card"><h3>Videos</h3><p class="stat-number" id="stat-vid">0</p></div>
+      <div class="stat-card"><h3>Products</h3><p class="stat-number" id="stat-prod">0</p></div>
+      <div class="stat-card"><h3>Pages</h3><p class="stat-number" id="stat-pages">0</p></div>
+    </div>
+    <div class="panel" style="padding:30px">
+      <h2 style="margin-bottom:16px">Quick Actions</h2>
+      <div class="actions-row">
+        <button class="btn-primary" onclick="showView('upload')">Upload Media</button>
+        <button class="btn-secondary" onclick="showView('shop-admin')">+ Add Product</button>
+        <button class="btn-ghost" onclick="showView('pages')">Create a Page</button>
+        <button class="btn-ghost" onclick="showView('settings')">Edit Site / Security</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="view-upload" class="hidden">
+  <div class="admin-container container">
+    <h1>Upload Content</h1>
+    <div class="panel" style="padding:30px;max-width:720px">
+      <form id="upload-form">
+        <div class="form-group"><label>Type</label>
+          <select id="up-type" class="form-control" onchange="toggleUploadMode()">
+            <option value="image">Image (Uploads to Cloudinary)</option>
+            <option value="video">Video (Paste YouTube Link)</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Title</label><input type="text" id="up-title" class="form-control" required></div>
+        <div class="form-group"><label>Description <span class="help">(optional)</span></label><textarea id="up-desc" class="form-control" rows="2"></textarea></div>
+        
+        <div id="img-mode" class="form-group">
+          <label>Select Image File</label>
+          <label class="file-upload-area" for="up-file">
+            <p id="file-label-text" style="font-weight:600">Click to browse image</p>
+            <p class="file-hint">Uploaded to Cloudinary and served watermarked + optimized.</p>
+            <input type="file" id="up-file" accept="image/*">
+          </label>
+        </div>
+
+        <div id="vid-mode" class="form-group hidden">
+          <label>YouTube URL</label>
+          <input type="url" id="up-yt-url" class="form-control" placeholder="https://www.youtube.com/watch?v=...">
+          <p class="file-hint">Paste any standard YouTube link. The player will be embedded automatically.</p>
+        </div>
+
+        <div class="actions-row"><button type="submit" class="btn-primary" id="up-btn">Publish Content</button><button type="button" class="btn-secondary" onclick="showView('dashboard')">Cancel</button></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="view-manage" class="hidden">
+  <div class="admin-container container">
+    <div class="toolbar"><h1 style="margin:0">Media Library</h1><button class="btn-primary" onclick="showView('upload')">+ Upload</button></div>
+    <div class="manage-grid" id="admin-manage-grid"></div>
+  </div>
+</div>
+
+<div id="view-shop-admin" class="hidden">
+  <div class="admin-container container">
+    <h1>Shop &amp; Products</h1>
+    <p style="color:var(--muted);margin:-12px 0 28px">Add products. Paste a <b>Gumroad</b>, <b>Stripe</b> or <b>PayPal</b> URL as the buy link. Use the eye to hide/show.</p>
+    <div class="panel" style="padding:30px;max-width:880px;margin-bottom:36px">
+      <h2 id="prod-form-title" style="margin-bottom:18px">Add New Product</h2>
+      <form id="prod-form">
+        <div class="field-row">
+          <div class="form-group"><label>Product Title</label><input type="text" id="pr-title" class="form-control" required></div>
+          <div class="form-group"><label>Price <span class="help">(e.g. $25)</span></label><input type="text" id="pr-price" class="form-control" placeholder="$25" required></div>
+        </div>
+        <div class="field-row">
+          <div class="form-group"><label>Type</label>
+            <select id="pr-kind" class="form-control">
+              <option value="Digital Download">Digital Download</option>
+              <option value="Art Print">Art Print</option>
+              <option value="Physical Product">Physical Product</option>
+              <option value="Commission / Service">Commission / Service</option>
+            </select></div>
+          <div class="form-group"><label>Buy Link (URL)</label><input type="url" id="pr-buy" class="form-control" placeholder="https://gumroad.com/l/..." required></div>
+        </div>
+        <div class="form-group"><label>Description</label><textarea id="pr-desc" class="form-control" rows="3"></textarea></div>
+        <div class="form-group"><label>Product Image <span class="help">(Optional - Uploads to Cloudinary)</span></label>
+          <label class="file-upload-area" for="pr-img" style="padding:24px"><p id="pr-img-text" style="font-weight:600">Click to choose an image</p><input type="file" id="pr-img" accept="image/*"></label>
+        </div>
+        <div class="form-group"><label class="check-row"><input type="checkbox" id="pr-hidden"> Hide from public shop</label></div>
+        <div class="actions-row"><button type="submit" class="btn-primary" id="pr-save-btn">💾 Save Product</button><button type="button" class="btn-secondary hidden" id="pr-cancel-edit">Cancel Edit</button><button type="button" class="btn-ghost" id="pr-reset">Clear</button></div>
+      </form>
+    </div>
+    <h2 style="margin-bottom:18px">Your Products</h2>
+    <div class="manage-grid" id="products-list"></div>
+  </div>
+</div>
+
+<div id="view-pages" class="hidden">
+  <div class="admin-container container">
+    <h1>Website Pages</h1>
+    <p style="color:var(--muted);margin:-12px 0 28px">Name the page, type content, pick a <b>Parent Page</b> to nest it. Eye = hide page + sub-pages from public.</p>
+    <div class="panel" style="padding:30px;max-width:880px;margin-bottom:36px">
+      <h2 id="pg-form-title" style="margin-bottom:18px">Create New Page</h2>
+      <form id="page-form">
+        <div class="field-row">
+          <div class="form-group"><label>Page Name</label><input type="text" id="pg-title" class="form-control" required></div>
+          <div class="form-group"><label>Parent Page <span class="help">(optional)</span></label><select id="pg-parent" class="form-control"><option value="">None (top-level)</option></select></div>
+        </div>
+        <div class="form-group"><label>Page Content</label>
+          <div class="editor-wrap">
+            <div class="editor-toolbar" id="ed-toolbar">
+              <button type="button" data-cmd="bold"><b>B</b></button><button type="button" data-cmd="italic"><i>I</i></button><button type="button" data-cmd="underline"><u>U</u></button>
+              <span class="sep"></span>
+              <button type="button" data-cmd="formatBlock" data-val="H1">H1</button><button type="button" data-cmd="formatBlock" data-val="H2">H2</button><button type="button" data-cmd="formatBlock" data-val="H3">H3</button><button type="button" data-cmd="formatBlock" data-val="P">¶</button>
+              <span class="sep"></span>
+              <button type="button" data-cmd="insertUnorderedList">• List</button><button type="button" data-cmd="insertOrderedList">1. List</button><button type="button" data-cmd="formatBlock" data-val="BLOCKQUOTE">❝</button>
+              <span class="sep"></span>
+              <button type="button" id="ed-img-btn">🖼 Image</button><button type="button" id="ed-link-btn">🔗 Link</button>
+              <span class="sep"></span>
+              <button type="button" data-cmd="undo">↶</button><button type="button" data-cmd="redo">↷</button><button type="button" data-cmd="removeFormat">✕</button>
+            </div>
+            <div id="pg-editor" class="editor-area" contenteditable="true"></div>
+          </div>
+          <input type="file" id="ed-img-input" accept="image/*" style="display:none">
+        </div>
+        <div class="form-group"><label class="check-row"><input type="checkbox" id="pg-hidden"> Hide this page (and sub-pages) from public</label></div>
+        <div class="actions-row"><button type="submit" class="btn-primary" id="pg-save-btn">💾 Save Page</button><button type="button" class="btn-secondary hidden" id="pg-cancel-edit">Cancel Edit</button><button type="button" class="btn-ghost" id="pg-reset">Clear</button></div>
+      </form>
+    </div>
+    <h2 style="margin-bottom:18px">Your Pages</h2>
+    <div class="manage-grid" id="pages-list" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))"></div>
+  </div>
+</div>
+
+<div id="view-settings" class="hidden">
+  <div class="admin-container container">
+    <h1>Site Settings</h1>
+    <p style="color:var(--muted);margin:-12px 0 28px">Edit hero, About Me, footer links, shop note, watermark, contact form, backup, and login security.</p>
+    
+    <div class="panel settings-block" style="border-color:rgba(46,230,166,.3)">
+      <h2>☁️ Cloud Sync (Supabase)</h2>
+      <p class="desc">Connect your site to a live database so settings, pages, products and media appear for everyone instantly.</p>
+      <div class="field-row">
+        <div class="form-group"><label>Project URL</label><input type="text" id="conf-supabase-url" class="form-control" placeholder="https://xxxx.supabase.co"></div>
+        <div class="form-group"><label>Anon Public Key</label><input type="text" id="conf-supabase-key" class="form-control" placeholder="eyJhbGciOi..."></div>
+      </div>
+      <div class="actions-row">
+        <button class="btn-primary" id="save-supabase-btn">Save &amp; Connect</button>
+        <button class="btn-secondary" id="push-local-btn">Push Local Data to Cloud</button>
+      </div>
+      <p class="file-hint" style="margin-top:10px">Get these from Supabase Dashboard > Project Settings > API.</p>
+    </div>
+
+    <div class="panel settings-block" style="border-color:rgba(0,212,255,.3)">
+      <h2>☁️ Cloud Storage (Cloudinary)</h2>
+      <p class="desc">Configure where your images are saved.</p>
+      <div class="field-row">
+        <div class="form-group"><label>Cloud Name</label><input type="text" id="conf-cloud-name" class="form-control" placeholder="e.g. jiqpmucj"></div>
+        <div class="form-group"><label>Upload Preset</label><input type="text" id="conf-preset" class="form-control" placeholder="e.g. portfolio_upload"></div>
+      </div>
+      <button class="btn-primary" id="save-cloud-btn">Save Cloud Config</button>
+    </div>
+
+    <div class="panel settings-block" style="border-color:rgba(255,94,125,.3)">
+      <h2>🛡️ Image Watermark &amp; Protection</h2>
+      <p class="desc">Displayed images and downloads use Cloudinary transformations. This deters casual theft but cannot stop determined users.</p>
+      
+      <!-- NEW DIRECT UPLOAD SECTION -->
+      <div class="form-group" style="background:var(--surface-2);padding:16px;border-radius:10px;border:1px solid var(--border-2);margin-bottom:20px">
+        <label style="color:var(--accent-2);font-weight:800;display:block;margin-bottom:8px"> Direct Logo Upload (No Code Needed)</label>
+        <p class="file-hint" style="margin-bottom:10px">Drag your transparent PNG/JPG logo here. We will upload it to Cloudinary and switch the mode to "Image" automatically when you save.</p>
+        <label class="file-upload-area" for="wm-direct-file" style="padding:20px;border-style:solid">
+          <p id="wm-direct-status" style="font-weight:600;color:var(--muted)">Click to select watermark logo...</p>
+          <input type="file" id="wm-direct-file" accept="image/png,image/jpeg,image/webp" style="display:none">
+        </label>
+        <input type="hidden" id="wm-direct-id-storage">
+      </div>
+
+      <div class="field-row">
+        <div class="form-group"><label class="check-row"><input type="checkbox" id="wm-enabled" checked> Enable watermark</label></div>
+        <div class="form-group"><label>Watermark Mode</label>
+          <select id="wm-mode" class="form-control">
+            <option value="text">Text Watermark</option>
+            <option value="image">Image Watermark</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="form-group"><label>Watermark Text</label><input type="text" id="wm-text" class="form-control" placeholder="© Koffiart37"></div>
+        <div class="form-group"><label>Watermark Image Public ID <span class="help">(Auto-filled if uploaded above)</span></label><input type="text" id="wm-image-id" class="form-control" placeholder="e.g. watermark or folder/watermark"></div>
+      </div>
+      <div class="field-row">
+        <div class="form-group"><label>Opacity (10–100)</label><input type="number" id="wm-opacity" class="form-control" min="10" max="100" value="55"></div>
+        <div class="form-group"><label>Position</label>
+          <select id="wm-position" class="form-control">
+            <option value="south_east">Bottom Right</option>
+            <option value="south_west">Bottom Left</option>
+            <option value="north_east">Top Right</option>
+            <option value="north_west">Top Left</option>
+            <option value="center">Center</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group"><label class="check-row"><input type="checkbox" id="wm-products" checked> Apply watermark to shop/product images too</label></div>
+    </div>
+
+    <div class="panel settings-block" style="border-color:rgba(255,207,107,.3)">
+      <h2> Contact Form (EmailJS)</h2>
+      <p class="desc">Connect a free EmailJS account so the public contact form sends messages to your inbox.</p>
+      <div class="field-row">
+        <div class="form-group"><label>Service ID</label><input type="text" id="contact-service" class="form-control"></div>
+        <div class="form-group"><label>Template ID</label><input type="text" id="contact-template" class="form-control"></div>
+      </div>
+      <div class="field-row">
+        <div class="form-group"><label>Public Key</label><input type="text" id="contact-key" class="form-control"></div>
+        <div class="form-group"><label>Recipient Email</label><input type="email" id="contact-to" class="form-control" placeholder="you@example.com"></div>
+      </div>
+      <p class="file-hint">Template variables to use: {{from_name}}, {{reply_to}}, {{message}}, {{to_email}}</p>
+    </div>
+
+    <div class="panel settings-block">
+      <h2>📄 Resume &amp; Analytics</h2>
+      <div class="field-row">
+        <div class="form-group"><label>Resume / CV URL <span class="help">(optional PDF link)</span></label><input type="url" id="resume-url" class="form-control" placeholder="https://res.cloudinary.com/.../cv.pdf"></div>
+        <div class="form-group"><label>Plausible Domain <span class="help">(optional analytics)</span></label><input type="text" id="analytics-domain" class="form-control" placeholder="koffiart37.com"></div>
+      </div>
+    </div>
+
+    <div class="panel settings-block" style="border-color:rgba(255,207,107,.3)">
+      <h2>👁️ Section Visibility</h2>
+      <p class="desc">Choose which sections appear on the Home page.</p>
+      <div class="field-row">
+        <div class="form-group"><label class="check-row"><input type="checkbox" id="vis-hero" checked> Show Hero Banner</label></div>
+        <div class="form-group"><label class="check-row"><input type="checkbox" id="vis-gallery" checked> Show Gallery Section</label></div>
+        <div class="form-group"><label class="check-row"><input type="checkbox" id="vis-shop" checked> Show Shop Section</label></div>
+        <div class="form-group"><label class="check-row"><input type="checkbox" id="vis-about" checked> Show About Me Section</label></div>
+        <div class="form-group"><label class="check-row"><input type="checkbox" id="vis-contact" checked> Show Contact Section</label></div>
+      </div>
+    </div>
+
+    <div class="panel settings-block">
+      <h2>Hero / Top Banner</h2>
+      <div class="form-group"><label>Small Tag</label><input type="text" id="set-hero-tag" class="form-control"></div>
+      <div class="field-row"><div class="form-group"><label>Headline — first part</label><input type="text" id="set-hero-l1" class="form-control"></div><div class="form-group"><label>Headline — highlighted</label><input type="text" id="set-hero-l2" class="form-control"></div></div>
+      <div class="form-group"><label>Sub-text</label><textarea id="set-hero-sub" class="form-control" rows="2"></textarea></div>
+    </div>
+
+    <div class="panel settings-block">
+      <h2>About Me Section</h2>
+      <div class="field-row"><div class="form-group"><label>Kicker</label><input type="text" id="set-about-kicker" class="form-control"></div><div class="form-group"><label>Section Title</label><input type="text" id="set-about-title" class="form-control"></div></div>
+      <div class="form-group"><label>Bio Text</label><textarea id="set-about-text" class="form-control" rows="8"></textarea></div>
+    </div>
+
+    <div class="panel settings-block">
+      <h2>Shop Note</h2>
+      <div class="form-group"><textarea id="set-shop-note" class="form-control" rows="2"></textarea></div>
+    </div>
+
+    <div class="panel settings-block">
+      <h2>Footer Links / Social Media</h2>
+      <div class="links-admin" id="links-rows"></div><button type="button" class="btn-ghost" id="add-link-btn">+ Add Link</button>
+    </div>
+
+    <div class="panel settings-block" style="border-color:rgba(46,230,166,.3)">
+      <h2>💾 Backup &amp; Restore</h2>
+      <p class="desc">Export all settings, media, pages and products as a JSON backup. Import it later if anything goes wrong.</p>
+      <div class="actions-row">
+        <button class="btn-primary" id="export-data-btn">⬇ Export Backup</button>
+        <label class="btn-secondary" for="import-data-input" style="display:inline-flex;align-items:center">⬆ Import Backup</label>
+        <input type="file" id="import-data-input" accept="application/json" style="display:none">
+      </div>
+    </div>
+
+    <div class="panel settings-block">
+      <h2>Login &amp; Security</h2>
+      <h3 class="sub-h">Change credentials</h3>
+      <form id="creds-form">
+        <div class="field-row"><div class="form-group"><label>Current username</label><input id="sec-cur-user" class="form-control" required></div><div class="form-group"><label>Current password</label><input id="sec-cur-pass" type="password" class="form-control" required></div></div>
+        <div class="field-row"><div class="form-group"><label>New username</label><input id="sec-new-user" class="form-control" required></div><div class="form-group"><label>New password <span class="help">(min 6)</span></label><input id="sec-new-pass" type="password" class="form-control" minlength="6" required></div></div>
+        <div class="form-group"><label>Confirm new password</label><input id="sec-conf-pass" type="password" class="form-control" required></div>
+        <button class="btn-primary" type="submit">Update Credentials</button>
+      </form>
+      <h3 class="sub-h">Two-step verification (2FA)</h3>
+      <form id="twofa-settings-form">
+        <div class="field-row"><div class="form-group"><label>Method</label><select id="sec-2fa-method" class="form-control"><option value="off">Disabled</option><option value="email">Email code</option><option value="phone">Phone (demo delivery)</option></select></div><div class="form-group"><label>Destination</label><input id="sec-2fa-dest" class="form-control" placeholder="you@email.com or +123456789"></div></div>
+        <div id="emailjs-fields" class="hidden">
+          <p class="file-hint" style="margin:0 0 12px">Optional EmailJS keys for real 2FA codes. Template vars: <b>{{to_email}}</b>, <b>{{code}}</b>.</p>
+          <div class="field-row"><div class="form-group"><label>EmailJS Service ID</label><input id="sec-ej-service" class="form-control"></div><div class="form-group"><label>EmailJS Template ID</label><input id="sec-ej-template" class="form-control"></div></div>
+          <div class="form-group"><label>EmailJS Public Key</label><input id="sec-ej-key" class="form-control"></div>
+        </div>
+        <button class="btn-primary" type="submit">Save 2FA Settings</button>
+      </form>
+    </div>
+
+    <div class="actions-row" style="margin-bottom:14px">
+      <button class="btn-primary" id="save-settings-btn">💾 Save Site Settings</button>
+      <button class="btn-secondary" id="reset-settings-btn">↺ Reset Content to Defaults</button>
+      <button class="btn-ghost" onclick="showView('home')">View Site</button>
+    </div>
+  </div>
+</div>
+
+<div class="lb" id="lightbox">
+  <div class="lb-bar top"></div><div class="lb-bar bottom"></div>
+  <button class="lb-btn lb-close" id="lb-close" title="Close (Esc)">✕</button>
+  <button class="lb-btn lb-lb" id="lb-letter" title="Toggle letterbox">▬</button>
+  <button class="lb-btn lb-download" id="lb-download" title="Download watermarked image">⬇</button>
+  <button class="lb-btn lb-prev" id="lb-prev" title="Previous">‹</button>
+  <button class="lb-btn lb-next" id="lb-next" title="Next">›</button>
+  <div class="lb-stage"><div class="lb-count" id="lb-count"></div><div id="lb-media-wrap"></div><div class="lb-cap"><h4 id="lb-title"></h4><p id="lb-desc"></p></div></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+window.addEventListener('error',function(e){showFatal(e.message+' — '+(e.filename||'').split('/').pop()+':'+e.lineno);});
+window.addEventListener('unhandledrejection',function(e){showFatal('Async error: '+((e.reason&&e.reason.message)||e.reason));});
+function showFatal(msg){
+  var b=document.getElementById('fatal-banner');
+  if(!b){b=document.createElement('div');b.id='fatal-banner';
+    b.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99999;background:#ff5e7d;color:#fff;padding:10px 16px;font:600 13px/1.4 system-ui;box-shadow:0 4px 20px rgba(0,0,0,.4)';
+    b.innerHTML='<b>Script error:</b> <span></span> <button style="float:right;background:none;border:1px solid #fff;color:#fff;border-radius:6px;cursor:pointer;padding:2px 8px" onclick="this.parentNode.remove()">✕</button>';
+    document.body.appendChild(b);}
+  b.querySelector('span').textContent=msg;
+}
+
+function lsGet(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true;}catch(e){console.warn('localStorage blocked',e);return false;}}
+
+async function sha256(str){
+  try{
+    if(window.crypto&&crypto.subtle&&crypto.subtle.digest){
+      const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+    }
+  }catch(e){}
+  let h=5381;for(let i=0;i<str.length;i++){h=((h<<5)+h+str.charCodeAt(i))>>>0;}
+  return 'fb'+h.toString(16);
+}
+
+async function getCreds(){
+  let c=lsGet('koffi_creds',null);
+  if(!c||!c.user||!c.hash){
+    c={user:'admin',hash:await sha256('admin123')};
+    lsSet('koffi_creds',c);
+  }
+  return c;
+}
+function saveCreds(c){lsSet('koffi_creds',c);}
+function get2FA(){return lsGet('koffi_twofa',{method:'off',dest:'',ej:{service:'',template:'',key:''}});}
+function save2FA(t){lsSet('koffi_twofa',t);}
+
+const DEFAULT_OG='https://picsum.photos/1200/630?random=999';
+const DEFAULT_SETTINGS={
+  heroTag:'Portfolio · 3D · Animation',heroLine1:'Welcome to',heroLine2:'Koffiart37',
+  heroSub:'A dark, focused space for my artwork, illustrations and 3D animations. Less noise, more work.',
+  aboutKicker:'Who I Am',aboutTitle:'About Me',
+  aboutText:"Welcome to my creative space. I'm passionate about art, design and visual storytelling — building worlds, characters and motion that pull people in.\n\nThis portfolio showcases my journey across digital art, illustration and 3D animation. Click any piece to view it fullscreen.",
+  shopNote:'Digital files are delivered instantly after payment. Prints and physical items are produced on demand and shipped worldwide.',
+  visibility:{hero:true,gallery:true,shop:true,about:true,contact:true},
+  watermark:{enabled:true,mode:'text',text:'© Koffiart37',imageId:'',opacity:55,position:'south_east',applyProducts:true},
+  contact:{service:'',template:'',key:'',to:''},
+  resumeUrl:'',
+  analyticsDomain:'',
+  links:[
+    {label:'Linktree',url:'https://linktr.ee/koffiart37'},
+    {label:'Gumroad Store',url:'https://koffiart37.gumroad.com/'},
+    {label:'ArtStation',url:'https://www.artstation.com/koffiart37'},
+    {label:'Patreon',url:'https://www.patreon.com/cw/Koffiart37'}
+  ]
+};
+
+function isObj(x){return x && typeof x==='object' && !Array.isArray(x)}
+function deepMerge(target,src){for(const k in src){if(isObj(src[k])&&isObj(target[k]))deepMerge(target[k],src[k]);else if(src[k]!==undefined)target[k]=src[k];}return target;}
+function normalizeSettings(o){const s=JSON.parse(JSON.stringify(DEFAULT_SETTINGS));deepMerge(s,o||{});if(!Array.isArray(s.links)||!s.links.length)s.links=DEFAULT_SETTINGS.links.slice();return s;}
+let CURRENT_SETTINGS=normalizeSettings(lsGet('koffi_settings',{}));
+function getSettings(){return CURRENT_SETTINGS;}
+function saveLocalSettings(s){CURRENT_SETTINGS=normalizeSettings(s);lsSet('koffi_settings',CURRENT_SETTINGS);}
+
+let supabaseClient=null;
+function getSupabaseConfig(){return lsGet('koffi_supabase',{url:'',key:''});}
+function saveSupabaseConfig(c){lsSet('koffi_supabase',c);}
+
+async function initSupabase(){
+  const conf=getSupabaseConfig();
+  if(!conf.url||!conf.key||!window.supabase){supabaseClient=null;return false;}
+  try{
+    supabaseClient=window.supabase.createClient(conf.url, conf.key);
+    const {error}=await supabaseClient.from('site_data').select('id').limit(1);
+    if(error) throw error;
+    return true;
+  }catch(e){console.error('Supabase Init Failed:',e);supabaseClient=null;return false;}
+}
+
+async function fetchData(key, def, useDefault=true){
+  if(supabaseClient){
+    try{
+      const {data,error}=await supabaseClient.from('site_data').select('*').eq('data_key',key).maybeSingle();
+      if(error){console.warn('Fetch error '+key,error);}
+      if(data && data.content!==undefined) return data.content;
+    }catch(e){console.error('Network error fetching '+key,e);}
+  }
+  const local=lsGet('koffi_'+key, null);
+  if(local!==null) return local;
+  return useDefault ? def : null;
+}
+
+async function saveData(key,value){
+  lsSet('koffi_'+key,value);
+  if(key==='settings') CURRENT_SETTINGS=normalizeSettings(value);
+  if(supabaseClient){
+    try{
+      const {error}=await supabaseClient.from('site_data').upsert({data_key:key,content:value},{onConflict:'data_key'});
+      if(error){console.error('Supabase Save Error:',error);toast('Saved locally, cloud sync failed.','err');return false;}
+    }catch(e){console.error('Network error saving '+key,e);return false;}
+  }
+  return true;
+}
+
+function getCloudConfig(){return lsGet('koffi_cloud',{name:'',preset:''});}
+function saveCloudConfig(c){lsSet('koffi_cloud',c);}
+
+const DB_NAME='koffiart37_meta',DB_VERSION=3,G_STORE='media_meta',P_STORE='pages_meta',SHOP='shop_meta';
+const COLLECTION_STORE={media:G_STORE,pages:P_STORE,products:SHOP};
+let db=null;
+function openDB(){return new Promise((res,rej)=>{
+  try{
+    const req=indexedDB.open(DB_NAME,DB_VERSION);
+    req.onupgradeneeded=e=>{const d=e.target.result;
+      [G_STORE,P_STORE,SHOP].forEach(s=>{if(!d.objectStoreNames.contains(s))d.createObjectStore(s,{keyPath:'id'});});};
+    req.onsuccess=e=>{db=e.target.result;res(db);};
+    req.onerror=e=>rej(e.target.error||new Error('IndexedDB blocked'));
+  }catch(e){rej(e);}
+});}
+function idb(store,mode,fn){return new Promise(async(res,rej)=>{
+  if(!db)await openDB();
+  const tx=db.transaction(store,mode);const os=tx.objectStore(store);
+  let r;try{r=fn(os);}catch(err){rej(err);return;}
+  tx.oncomplete=()=>res(r&&r.result!==undefined?r.result:true);
+  tx.onerror=e=>rej(e.target.error);tx.onabort=e=>rej(e.target.error);
+});}
+function idbReplaceAll(store, arr){return new Promise(async(res,rej)=>{
+  if(!db)await openDB();
+  const tx=db.transaction(store,'readwrite');const os=tx.objectStore(store);
+  os.clear(); arr.forEach(i=>os.put(i));
+  tx.oncomplete=()=>res(true); tx.onerror=e=>rej(e.target.error); tx.onabort=e=>rej(e.target.error);
+});}
+const sGetRecs=()=>idb(G_STORE,'readonly',os=>os.getAll()).catch(()=>[]);
+const sGetPages=()=>idb(P_STORE,'readonly',os=>os.getAll()).catch(()=>[]);
+const sGetProds=()=>idb(SHOP,'readonly',os=>os.getAll()).catch(()=>[]);
+
+async function persistCollection(key, arr){
+  const store=COLLECTION_STORE[key];
+  await idbReplaceAll(store, arr);
+  lsSet('koffi_'+key, arr);
+  if(supabaseClient){
+    try{
+      const {error}=await supabaseClient.from('site_data').upsert({data_key:key,content:arr},{onConflict:'data_key'});
+      if(error){console.error(error);toast('Saved locally, cloud sync failed: '+error.message,'err');return false;}
+    }catch(e){console.error(e);return false;}
+  }
+  return true;
+}
+
+async function syncFromCloud(){
+  if(!supabaseClient){toast('Supabase not connected — using local data only','err');return;}
+  const remoteSettings=await fetchData('settings', null, false);
+  if(remoteSettings){CURRENT_SETTINGS=normalizeSettings(remoteSettings);lsSet('koffi_settings',CURRENT_SETTINGS);}
+
+  for(const key of ['media','pages','products']){
+    const remote=await fetchData(key, null, false);
+    const local= key==='media'?await sGetRecs():key==='pages'?await sGetPages():await sGetProds();
+    if(Array.isArray(remote) && (remote.length || local.length===0)){
+      await idbReplaceAll(COLLECTION_STORE[key], remote);
+      lsSet('koffi_'+key, remote);
+    }
+  }
+  toast('Cloud data loaded ✓','ok');
+}
+
+const ICONS={linktree:'<path d="M12 2.6c2.7 2.9 2.7 5.8 0 8.7-2.7-2.9-2.7-5.8 0-8.7z"/><path d="M4.6 9.6c3.1-.3 5.5 1.2 6.9 4.3-3.1.9-5.8-.6-6.9-4.3z"/><path d="M19.4 9.6c-3.1-.3-5.5 1.2-6.9 4.3 3.1.9 5.8-.6 6.9-4.3z"/><path d="M12 14v7.4"/>',instagram:'<rect x="3.2" y="3.2" width="17.6" height="17.6" rx="4.6"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.1" cy="6.9" r=".7" fill="currentColor" stroke="none"/>',youtube:'<rect x="2.6" y="6" width="18.8" height="12.6" rx="3.4"/><path d="M10.4 9.6v5.4l4.8-2.7z" fill="currentColor" stroke="none"/>',x:'<path d="M5 4l14 16"/><path d="M19 4L5 20"/>',facebook:'<path d="M14.5 8.5H17V5h-2.5A4.5 4.5 0 0 0 10 9.5V12H7.5v3.5H10V21h3.5v-5.5H16l.5-3.5h-3V9.5a1 1 0 0 1 1-1z" fill="currentColor" stroke="none"/>',tiktok:'<path d="M14.5 4v9.8a3.6 3.6 0 1 1-3-3.55"/><path d="M14.5 4c.6 2.6 2.2 4.1 4.8 4.4"/>',linkedin:'<rect x="3.2" y="3.2" width="17.6" height="17.6" rx="3.4"/><path d="M8 10.5V17"/><path d="M8 7.2v.1"/><path d="M12 17v-3.8a2.6 2.6 0 0 1 5.2 0V17"/>',artstation:'<path d="M4 16.8h12.6L10.3 5.8z" fill="currentColor" stroke="none"/><path d="M9 20.2h9.6"/>',behance:'<path d="M4 6h4.4a2.7 2.7 0 0 1 0 5.4H4z"/><path d="M4 11.4h5a3.1 3.1 0 0 1 0 6.2H4z"/><path d="M14.2 14.4h6a3 3 0 0 0-6 0 3.1 3.1 0 0 0 5.4 2"/><path d="M15 7.6h4"/>',mail:'<rect x="3" y="5" width="18" height="14" rx="2.4"/><path d="M3.6 7l8.4 6 8.4-6"/>',phone:'<path d="M7 3.5h3l1.4 4-2.2 1.5a12.5 12.5 0 0 0 5.8 5.8l1.5-2.2 4 1.4v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 5 5.7 2 2 0 0 1 7 3.5z"/>',globe:'<circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2"/><path d="M12 3.4a13 13 0 0 1 0 17.2 13 13 0 0 1 0-17.2z"/>'};
+function iconFor(url,label){const s=((url||'')+' '+(label||'')).toLowerCase();if(/linktr\.ee/.test(s))return ICONS.linktree;if(/instagram|insta\.|\/ig/.test(s))return ICONS.instagram;if(/youtube|youtu\.be/.test(s))return ICONS.youtube;if(/twitter|x\.com/.test(s))return ICONS.x;if(/facebook|fb\.com/.test(s))return ICONS.facebook;if(/tiktok/.test(s))return ICONS.tiktok;if(/linkedin/.test(s))return ICONS.linkedin;if(/artstation/.test(s))return ICONS.artstation;if(/behance/.test(s))return ICONS.behance;if(/mailto:|@/.test(s))return ICONS.mail;if(/tel:|phone|\+\d/.test(s))return ICONS.phone;return ICONS.globe;}
+function iconSVG(url,label,size){size=size||16;return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+iconFor(url,label)+'</svg>';}
+
+let activeURLs=[];
+function revokeURLs(){activeURLs.forEach(u=>URL.revokeObjectURL(u));activeURLs=[];}
+function makeURL(b){const u=URL.createObjectURL(b);activeURLs.push(u);return u;}
+function itemURL(it){return it.cloudUrl||it.ytEmbed||'';} 
+function toast(m,t){const el=document.getElementById('toast');el.textContent=m;el.className='toast show '+(t||'ok');clearTimeout(el._t);el._t=setTimeout(()=>el.className='toast',3200);}
+function fmtMB(b){return (b/1048576).toFixed(1);}
+function slugify(s){return s.toLowerCase().trim().replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'');}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function sanitize(html){return String(html).replace(/<script[\s\S]*?<\/script\s*>/gi,'').replace(/\son\w+\s*=\s*"[^"]*"/gi,'').replace(/\son\w+\s*=\s*'[^']*'/gi,'').replace(/javascript\s*:/gi,'');}
+function isLinktree(u){return /linktr\.ee/i.test(u||'');}
+function paras(text){return String(text||'').split(/\n\s*\n/).map(p=>p.trim()).filter(Boolean).map(p=>'<p>'+esc(p).replace(/\n/g,'<br>')+'</p>').join('');}
+function plainPreview(html){const d=document.createElement('div');d.innerHTML=sanitize(html);return (d.textContent||'').replace(/\s+/g,' ').trim().slice(0,160);}
+function maskDest(m,d){if(m==='email'){const p=d.split('@');return p[0]?p[0][0]+'***@'+(p[1]||''):d;}return d.replace(/\d(?=\d{3})/g,'•');}
+function kidsOf(id,pages){return pages.filter(k=>k.parentId===id).sort((a,b)=>a.title.localeCompare(b.title));}
+function descendants(id,pages){const out=[];const walk=pid=>kidsOf(pid,pages).forEach(p=>{out.push(p.id);walk(p.id);});walk(id);return out;}
+function byIdMap(pages){const m={};pages.forEach(p=>m[p.id]=p);return m;}
+function isVisible(p,m){let cur=p,seen=new Set();while(cur){if(seen.has(cur.id))return false;seen.add(cur.id);if(cur.hidden)return false;if(!cur.parentId)return true;cur=m[cur.parentId];if(!cur)return true;}return true;}
+function visiblePages(pages){const m=byIdMap(pages);return pages.filter(p=>isVisible(p,m));}
+
+function isCloudinary(url){return /res\.cloudinary\.com\/[^/]+\/image\/upload\//.test(url||'')}
+function insertTransform(url, transforms){
+  if(!isCloudinary(url) || !transforms) return url;
+  return url.replace(/(\/image\/upload\/)/, '$1'+transforms+'/');
+}
+function buildWatermarkLayer(){
+  const wm=CURRENT_SETTINGS.watermark||{};
+  if(!wm.enabled) return '';
+  const pos=wm.position||'south_east';
+  const op=Math.max(10,Math.min(100,Number(wm.opacity)||55));
+  if(wm.mode==='image' && wm.imageId){
+    return `l_${wm.imageId}/fl_layer_apply,g_${pos},o_${op},x_25,y_25`;
+  }
+  const text=(wm.text||'© Koffiart37');
+  const enc=encodeURIComponent(text);
+  return `l_text:Arial_40_bold:${enc}/co_white/fl_layer_apply,g_${pos},o_${op},x_25,y_25`;
+}
+function cloudImage(url, opts={}){
+  if(!isCloudinary(url)) return url;
+  const parts=[];
+  if(opts.placeholder){
+    parts.push('w_40,h_40,c_fill,e_blur:1000,q_auto:low,f_webp');
+  } else {
+    parts.push('f_webp,q_auto:best,e_sharpen:40');
+    if(opts.watermark!==false){
+      const layer=buildWatermarkLayer();
+      if(layer) parts.push(layer);
+    }
+  }
+  return insertTransform(url, parts.join('/'));
+}
+function cloudPlaceholder(url){return cloudImage(url,{placeholder:true});}
+
+function getYoutubeID(url){
+  if(!url) return null;
+  url = url.trim();
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/|youtube\.com\/live\/)([a-zA-Z0-9_-]{11})/,
+    /[?&]v=([a-zA-Z0-9_-]{11})/
+  ];
+  for(let p of patterns){
+    const match = url.match(p);
+    if(match && match[1]) return match[1];
+  }
+  return null;
+}
+function createYoutubeEmbed(videoId){
+  return `<iframe src="https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+}
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+function initReveals(){document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));}
+
+const lazyIO=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){
+    const img=e.target;
+    if(img.dataset.src){
+      img.src=img.dataset.src;
+      const done=()=>img.closest('.blur-wrap')?.classList.add('loaded');
+      if(img.complete) done(); else img.onload=done;
+    }
+    lazyIO.unobserve(img);
+  }
+}),{rootMargin:'250px'});
+function initLazy(){document.querySelectorAll('img.lazy-img[data-src]').forEach(img=>lazyIO.observe(img));}
+
+const ADMIN_VIEWS=['dashboard','upload','manage','shop-admin','pages','settings'];
+function showView(v){
+  document.querySelectorAll('[id^="view-"]').forEach(el=>el.classList.add('hidden'));
+  document.getElementById('view-'+v).classList.remove('hidden');
+  document.body.classList.remove('menu-open');
+  document.querySelectorAll('.has-sub.open').forEach(li=>li.classList.remove('open'));
+  const pub=document.getElementById('public-nav'),adm=document.getElementById('admin-nav');
+  if(v==='login'||v==='twofa'){pub.classList.add('hidden');adm.classList.add('hidden');}
+  else if(ADMIN_VIEWS.includes(v)){pub.classList.add('hidden');adm.classList.remove('hidden');document.querySelectorAll('.admin-nav-links a[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===v));}
+  else{adm.classList.add('hidden');pub.classList.remove('hidden');}
+  if(v==='home'){renderPublicHome();renderPublicGallery();renderPublicShop();applyVisibility();updateResume();}
+  if(v==='dashboard')updateStats();
+  if(v==='manage')renderManage();
+  if(v==='shop-admin')renderProductsList();
+  if(v==='pages'){fillParentSelect(editingPageId);renderPagesList();}
+  if(v==='settings')loadSettingsForm();
+  window.scrollTo(0,0);setTimeout(initReveals,30);
+}
+function scrollToSection(id){showView('home');setTimeout(()=>document.getElementById(id).scrollIntoView({behavior:'smooth'}),80);}
+document.getElementById('hamburger').addEventListener('click',()=>document.body.classList.toggle('menu-open'));
+document.addEventListener('click',e=>{if(!e.target.closest('.has-sub'))document.querySelectorAll('.has-sub.open').forEach(li=>li.classList.remove('open'));});
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const p=h.scrollTop/((h.scrollHeight-h.clientHeight)||1)*100;
+  document.getElementById('scroll-progress').style.width=Math.max(0,Math.min(100,p))+'%';
+},{passive:true});
+
+function applyVisibility(){
+  const vis=CURRENT_SETTINGS.visibility||{hero:true,gallery:true,shop:true,about:true,contact:true};
+  document.getElementById('sec-hero').classList.toggle('hidden',!vis.hero);
+  document.getElementById('gallery').classList.toggle('hidden',!vis.gallery);
+  document.getElementById('shop').classList.toggle('hidden',!vis.shop);
+  document.getElementById('about').classList.toggle('hidden',!vis.about);
+  document.getElementById('contact').classList.toggle('hidden',!vis.contact);
+  document.getElementById('nav-gallery-li').classList.toggle('hidden',!vis.gallery);
+  document.getElementById('nav-shop-li').classList.toggle('hidden',!vis.shop);
+  document.getElementById('nav-about-li').classList.toggle('hidden',!vis.about);
+  document.getElementById('nav-contact-li').classList.toggle('hidden',!vis.contact);
+}
+function updateResume(){
+  const url=CURRENT_SETTINGS.resumeUrl;
+  const el=document.getElementById('resume-link');
+  if(url){el.href=url;el.classList.remove('hidden');}else el.classList.add('hidden');
+}
+function setMeta(title,desc,image){
+  const t=title||'Koffiart37 - Portfolio';
+  const d=(desc||CURRENT_SETTINGS.heroSub||'').slice(0,200);
+  const img=image||DEFAULT_OG;
+  document.title=t;
+  const set=(id,val)=>{const el=document.getElementById(id);if(el)el.setAttribute('content',val||'');};
+  set('meta-desc',d);set('og-title',t);set('og-desc',d);set('og-image',img);set('tw-title',t);set('tw-desc',d);set('tw-image',img);
+  const url=location.href.split('#')[0];set('og-url',url);
+  const canon=document.getElementById('canonical');if(canon)canon.href=url;
+}
+function injectAnalytics(){
+  const d=CURRENT_SETTINGS.analyticsDomain;
+  if(!d || document.getElementById('plausible-analytics'))return;
+  const s=document.createElement('script');
+  s.id='plausible-analytics';s.defer=true;s.dataset.domain=d;s.src='https://plausible.io/js/script.js';
+  document.head.appendChild(s);
+}
+
+document.getElementById('login-form').addEventListener('submit',async e=>{
+  e.preventDefault();
+  try{
+    const u=document.getElementById('login-user').value.trim();
+    const p=document.getElementById('login-pass').value;
+    const creds=await getCreds();
+    const hash=await sha256(p);
+    if(u===creds.user&&hash===creds.hash){
+      e.target.reset();
+      const tf=get2FA();
+      if(tf.method!=='off'&&tf.dest)start2FA(tf);else finishLogin();
+    }else toast('Invalid username or password','err');
+  }catch(err){console.error(err);toast('Login error: '+err.message,'err');}
+});
+document.getElementById('creds-reset').addEventListener('click',()=>{
+  if(confirm('Reset login back to admin / admin123?')){
+    lsSet('koffi_creds',{user:'admin',hash:null}); 
+    getCreds().then(()=>toast('Reset done — login with admin / admin123','ok'));
+  }
+});
+function finishLogin(){localStorage.setItem('koffi_logged_in','true');showView('dashboard');toast('Welcome back','ok');}
+function logout(){localStorage.removeItem('koffi_logged_in');pending2fa=null;showView('home');toast('Logged out','ok');}
+function genCode(){return String(Math.floor(100000+Math.random()*900000));}
+let pending2fa=null;
+function start2FA(tf){pending2fa={method:tf.method,dest:tf.dest,ej:tf.ej||{},code:'',expires:0,attempts:0};
+  document.getElementById('twofa-sub').textContent='We sent a 6-digit code to '+maskDest(tf.method,tf.dest);
+  document.getElementById('twofa-code').value='';showView('twofa');sendCode();}
+async function sendCode(){if(!pending2fa)return;pending2fa.code=genCode();pending2fa.expires=Date.now()+300000;
+  const demo=document.getElementById('twofa-demo'),note=document.getElementById('twofa-note');
+  if(pending2fa.method==='email'&&pending2fa.ej.service&&pending2fa.ej.template&&pending2fa.ej.key){
+    try{const res=await fetch('https://api.emailjs.com/api/v1.0/email/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({service_id:pending2fa.ej.service,template_id:pending2fa.ej.template,user_id:pending2fa.ej.key,template_params:{to_email:pending2fa.dest,code:pending2fa.code}})});
+      if(res.ok){demo.classList.add('hidden');note.textContent='Code sent by email. Expires in 5 minutes.';toast('Code sent','ok');return;}throw new Error('EmailJS '+res.status);}catch(err){note.textContent='EmailJS failed — code shown below (demo).';}
+  }else{note.textContent=pending2fa.method==='phone'?'SMS needs a backend (e.g. Twilio). Code shown below (demo).':'No EmailJS keys — code shown below (demo).';}
+  demo.classList.remove('hidden');demo.innerHTML='<p>DEMO DELIVERY — your code:</p><div class="big-code">'+pending2fa.code+'</div><p>Expires in 5 minutes</p>';}
+document.getElementById('twofa-form').addEventListener('submit',e=>{e.preventDefault();if(!pending2fa)return showView('login');
+  if(Date.now()>pending2fa.expires){toast('Code expired — resend','err');return;}pending2fa.attempts++;
+  if(pending2fa.attempts>5){pending2fa=null;showView('login');return toast('Too many attempts','err');}
+  if(document.getElementById('twofa-code').value.trim()===pending2fa.code){pending2fa=null;finishLogin();}else toast('Wrong code','err');});
+let resendTimer=null;
+document.getElementById('twofa-resend').addEventListener('click',function(){if(!pending2fa)return;sendCode();toast('New code generated','ok');const btn=this;let s=30;btn.disabled=true;btn.style.opacity=.5;clearInterval(resendTimer);resendTimer=setInterval(()=>{s--;btn.textContent='Resend ('+s+'s)';if(s<=0){clearInterval(resendTimer);btn.disabled=false;btn.style.opacity=1;btn.textContent='Resend code';}},1000);});
+document.getElementById('twofa-cancel').addEventListener('click',()=>{pending2fa=null;showView('login');});
+
+const fileInput=document.getElementById('up-file');
+const ytInput=document.getElementById('up-yt-url');
+const typeSelect=document.getElementById('up-type');
+function toggleUploadMode(){
+  const isImg=typeSelect.value==='image';
+  document.getElementById('img-mode').classList.toggle('hidden',!isImg);
+  document.getElementById('vid-mode').classList.toggle('hidden',isImg);
+}
+fileInput.addEventListener('change',function(){if(this.files[0]){const f=this.files[0];document.getElementById('file-label-text').textContent='Selected: '+f.name+'  ('+fmtMB(f.size)+' MB)';}});
+
+document.getElementById('upload-form').addEventListener('submit',async function(e){e.preventDefault();
+  try{
+    const type=typeSelect.value;
+    const title=document.getElementById('up-title').value;
+    const desc=document.getElementById('up-desc').value;
+    let record={id:Date.now(),title,desc,type,date:new Date().toLocaleDateString(),hidden:false};
+
+    if(type==='image'){
+      const file=fileInput.files[0];
+      if(!file)return toast('Select an image file','err');
+      const conf=getCloudConfig();
+      if(!conf.name||!conf.preset)return toast('Cloudinary not configured! Go to Settings > Cloud Storage.','err');
+      const formData=new FormData();
+      formData.append('file',file);
+      formData.append('upload_preset',conf.preset);
+      const btn=document.getElementById('up-btn');btn.disabled=true;btn.textContent='Uploading to Cloud...';
+      const response=await fetch(`https://api.cloudinary.com/v1_1/${conf.name}/image/upload`,{method:'POST',body:formData});
+      const data=await response.json();
+      if(data.secure_url){record.cloudUrl=data.secure_url;toast('Image uploaded to Cloud ✓','ok');}
+      else throw new Error(data.error?.message||'Upload failed');
+    } else if(type==='video'){
+      const url=ytInput.value.trim();
+      if(!url)return toast('Paste a YouTube link','err');
+      const vidId=getYoutubeID(url);
+      if(!vidId)return toast('Invalid YouTube URL. Please copy the full link from the Share button.','err');
+      record.ytEmbed=createYoutubeEmbed(vidId);
+      toast('Video linked ✓','ok');
+    }
+
+    const data=await sGetRecs();
+    data.unshift(record);
+    await persistCollection('media', data);
+    this.reset();
+    document.getElementById('file-label-text').textContent='Click to browse image';
+    showView('manage');
+  }catch(err){console.error(err);toast('Upload failed: '+err.message,'err');}
+  finally{const btn=document.getElementById('up-btn');btn.disabled=false;btn.textContent='Publish Content';}
+});
+
+function renderPublicHome(){
+  const s=CURRENT_SETTINGS;
+  document.getElementById('hero-tag').textContent=s.heroTag||'';
+  document.getElementById('hero-line1').textContent=s.heroLine1||'';
+  document.getElementById('hero-line2').textContent=s.heroLine2||'';
+  document.getElementById('hero-sub').textContent=s.heroSub||'';
+  document.getElementById('about-kicker').textContent=s.aboutKicker||'';
+  document.getElementById('about-title').textContent=s.aboutTitle||'';
+  document.getElementById('about-body').innerHTML=paras(s.aboutText)||'<p style="color:var(--muted)">No bio yet.</p>';
+  document.getElementById('shop-note').textContent=s.shopNote||'';
+  document.getElementById('footer-links-grid').innerHTML=(s.links||[]).map(l=>{const cls=isLinktree(l.url)?'link-card lt':'link-card';return '<a class="'+cls+'" href="'+esc(l.url)+'" target="_blank" rel="noopener">'+iconSVG(l.url,l.label)+esc(l.label)+'</a>';}).join('')||'<p style="color:var(--muted)">No links yet.</p>';
+  setTimeout(initReveals,30);
+}
+
+let publicData=[];
+const PLACEHOLDERS=[{type:'image',title:'Sample Artwork 1',desc:'Digital Painting',cloudUrl:'https://picsum.photos/800/800?random=1'},{type:'image',title:'Sample Artwork 2',desc:'Illustration',cloudUrl:'https://picsum.photos/800/800?random=2'},{type:'image',title:'Sample Artwork 3',desc:'3D Render',cloudUrl:'https://picsum.photos/800/800?random=3'}];
+async function renderPublicGallery(){
+  revokeURLs();
+  const grid=document.getElementById('public-gallery-grid');
+  const data=(await sGetRecs()).filter(r=>!r.hidden).sort((a,b)=>b.id-a.id);
+  publicData=data.length?data:PLACEHOLDERS;
+  grid.innerHTML=publicData.map((it,i)=>{
+    let mediaHtml='';
+    if(it.type==='video'&&it.ytEmbed){
+      mediaHtml=`<div class="media-fill">${it.ytEmbed}</div><span class="badge">Video</span>`;
+    } else {
+      const url=itemURL(it);
+      const placeholder=cloudPlaceholder(url);
+      const sharp=cloudImage(url,{watermark:true});
+      mediaHtml=`<div class="blur-wrap media-fill" style="background-image:url('${placeholder}')"><img class="lazy-img" data-src="${sharp}" alt="${esc(it.title)}"></div>`;
+    }
+    return '<div class="gallery-item reveal" style="transition-delay:'+Math.min(i,12)*55+'ms" onclick="openLightbox('+i+')"><button class="expand-btn" onclick="event.stopPropagation();openLightbox('+i+')">⤢</button>'+mediaHtml+'<div class="gallery-overlay"><h3>'+esc(it.title)+'</h3><p>'+esc(it.desc||'')+'</p></div></div>';
+  }).join('');
+  initLazy();
+  setTimeout(initReveals,30);
+  updateHomeMeta();
+}
+function updateHomeMeta(){
+  const first=publicData.find(x=>x.type==='image'&&x.cloudUrl);
+  const img=first?cloudImage(first.cloudUrl,{watermark:false}):DEFAULT_OG;
+  setMeta('Koffiart37 — '+(CURRENT_SETTINGS.heroLine2||'Portfolio'), CURRENT_SETTINGS.aboutText||CURRENT_SETTINGS.heroSub, img);
+}
+
+let lbIndex=0,lbOpen=false,scrollLockY=0;
+function lockScroll(){scrollLockY=window.scrollY;const b=document.body;b.style.position='fixed';b.style.top='-'+scrollLockY+'px';b.style.width='100%';}
+function unlockScroll(){const b=document.body;b.style.position='';b.style.top='';b.style.width='';window.scrollTo(0,scrollLockY);}
+function openLightbox(i){if(!publicData.length)return;lbIndex=i;lbOpen=true;lockScroll();const lb=document.getElementById('lightbox');if(localStorage.getItem('koffi_letterbox')!=='off')lb.classList.add('letterbox');syncLbBtn();lb.classList.add('open');paintLightbox();}
+function closeLightbox(){lbOpen=false;document.getElementById('lightbox').classList.remove('open');document.getElementById('lb-media-wrap').innerHTML='';unlockScroll();}
+function stepLightbox(d){lbIndex=(lbIndex+d+publicData.length)%publicData.length;paintLightbox();}
+function paintLightbox(){
+  const it=publicData[lbIndex],wrap=document.getElementById('lb-media-wrap');
+  const dl=document.getElementById('lb-download');
+  if(it.type==='video'&&it.ytEmbed){
+    dl.classList.add('hidden');
+    wrap.innerHTML=`<div class="lb-media" style="width:90vw;max-width:1200px;aspect-ratio:16/9">${it.ytEmbed}</div>`;
+  } else {
+    dl.classList.remove('hidden');
+    const url=cloudImage(itemURL(it),{watermark:true});
+    wrap.innerHTML=`<img class="lb-media" src="${url}" alt="${esc(it.title)}">`;
+  }
+  document.getElementById('lb-title').textContent=it.title||'';
+  document.getElementById('lb-desc').textContent=it.desc||'';
+  document.getElementById('lb-count').textContent=(lbIndex+1)+' / '+publicData.length;
+}
+function downloadCurrent(){
+  const it=publicData[lbIndex];
+  if(!it || it.type!=='image' || !it.cloudUrl)return toast('No image to download','err');
+  const url=cloudImage(it.cloudUrl,{watermark:true});
+  fetch(url).then(r=>r.blob()).then(b=>{
+    const a=document.createElement('a');
+    const objUrl=URL.createObjectURL(b);
+    a.href=objUrl;a.download=(it.title||'artwork')+'-watermarked.jpg';
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(objUrl),1500);
+    toast('Watermarked image downloaded','ok');
+  }).catch(()=>{window.open(url,'_blank');toast('Opened watermarked image in new tab','ok');});
+}
+function syncLbBtn(){document.getElementById('lb-letter').classList.toggle('on',document.getElementById('lightbox').classList.contains('letterbox'));}
+document.getElementById('lb-close').onclick=closeLightbox;
+document.getElementById('lb-prev').onclick=()=>stepLightbox(-1);
+document.getElementById('lb-next').onclick=()=>stepLightbox(1);
+document.getElementById('lb-download').onclick=downloadCurrent;
+document.getElementById('lb-letter').onclick=()=>{const lb=document.getElementById('lightbox');lb.classList.toggle('letterbox');localStorage.setItem('koffi_letterbox',lb.classList.contains('letterbox')?'on':'off');syncLbBtn();};
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target.id==='lightbox')closeLightbox();});
+document.addEventListener('keydown',e=>{if(!lbOpen)return;if(e.key==='Escape')closeLightbox();else if(e.key==='ArrowLeft')stepLightbox(-1);else if(e.key==='ArrowRight')stepLightbox(1);});
+
+function buyProvider(url){const u=(url||'').toLowerCase();if(/gumroad/.test(u))return 'gumroad';if(/stripe|pay\.link|paymentlinks/.test(u))return 'stripe';if(/paypal/.test(u))return 'paypal';return 'other';}
+async function renderPublicShop(){
+  revokeURLs();
+  const grid=document.getElementById('public-shop-grid');
+  const data=(await sGetProds()).filter(p=>!p.hidden).sort((a,b)=>b.id-a.id);
+  if(!data.length){grid.innerHTML='<div class="empty-state" style="grid-column:1/-1"><h3>Shop opening soon</h3><p>Prints and digital packs will appear here.</p></div>';return;}
+  grid.innerHTML=data.map(p=>{
+    const prov=buyProvider(p.buyUrl);
+    const label=prov==='gumroad'?'Buy on Gumroad':prov==='stripe'?'Buy with Card':prov==='paypal'?'Buy via PayPal':'Buy Now';
+    const cls=prov==='stripe'?'buy-btn stripe':prov==='paypal'?'buy-btn paypal':'buy-btn';
+    const thumb=p.cloudUrl?'<img src="'+cloudImage(p.cloudUrl,{watermark:!!CURRENT_SETTINGS.watermark.applyProducts})+'" alt="'+esc(p.title)+'">':'<div class="ph">'+esc((p.title||'?').slice(0,2).toUpperCase())+'</div>';
+    const attrs=prov==='gumroad'?' data-gumroad-overlay-checkout="true"':'';
+    return '<div class="product-card reveal"><div class="product-thumb">'+thumb+'<span class="kind-badge">'+esc(p.kind)+'</span></div>'+
+      '<div class="product-body"><h3>'+esc(p.title)+'</h3><p>'+esc(p.desc||'')+'</p>'+
+      '<div class="product-foot"><span class="price-tag">'+esc(p.price)+'</span>'+
+      '<a class="'+cls+'" href="'+esc(p.buyUrl)+'" target="_blank" rel="noopener"'+attrs+'>'+label+'</a></div></div></div>';
+  }).join('');
+  setTimeout(initReveals,30);
+}
+
+async function renderManage(){
+  revokeURLs();
+  const grid=document.getElementById('admin-manage-grid');
+  const data=(await sGetRecs()).sort((a,b)=>b.id-a.id);
+  if(!data.length){grid.innerHTML='<div class="empty-state"><h3>No media yet</h3><p>Upload your first image or 3D animation.</p></div>';return;}
+  grid.innerHTML=data.map(it=>{
+    let mediaHtml='';
+    if(it.type==='video'&&it.ytEmbed){
+      mediaHtml=`<div style="width:100%;height:170px;overflow:hidden">${it.ytEmbed}</div>`;
+    } else {
+      mediaHtml=`<img src="${cloudImage(itemURL(it),{watermark:true})}">`;
+    }
+    return '<div class="manage-item'+(it.hidden?' is-hidden':'')+'">'+mediaHtml+
+      '<div class="manage-info"><h4>'+esc(it.title)+'</h4><small>'+it.date+' • '+it.type+'</small></div>'+
+      '<div class="manage-actions"><button class="btn-small btn-eye" onclick="toggleMedia('+it.id+')">'+(it.hidden?'Show':'Hide')+'</button>'+
+      '<button class="btn-small btn-delete" onclick="delMedia('+it.id+')">Delete</button></div></div>';
+  }).join('');
+}
+async function toggleMedia(id){const data=await sGetRecs();const it=data.find(x=>x.id===id);if(!it)return;it.hidden=!it.hidden;await persistCollection('media',data);renderManage();toast(it.hidden?'Hidden from site':'Visible on site','ok');}
+async function delMedia(id){if(!confirm('Delete this item permanently?'))return;const data=(await sGetRecs()).filter(x=>x.id!==id);await persistCollection('media',data);renderManage();toast('Item deleted','ok');}
+
+let editingProdId=null;const prodImgInput=document.getElementById('pr-img');let pendingProdBlob=null;
+prodImgInput.addEventListener('change',function(){if(this.files[0]){const f=this.files[0];pendingProdBlob=f;document.getElementById('pr-img-text').textContent='Selected: '+f.name;}});
+function resetProdForm(){editingProdId=null;document.getElementById('prod-form').reset();pendingProdBlob=null;document.getElementById('pr-img-text').textContent='Click to choose an image';document.getElementById('prod-form-title').textContent='Add New Product';document.getElementById('pr-save-btn').textContent='💾 Save Product';document.getElementById('pr-cancel-edit').classList.add('hidden');}
+document.getElementById('pr-reset').addEventListener('click',()=>{resetProdForm();toast('Cleared','ok');});
+document.getElementById('pr-cancel-edit').addEventListener('click',()=>{resetProdForm();toast('Edit cancelled','ok');});
+document.getElementById('prod-form').addEventListener('submit',async e=>{e.preventDefault();
+  try{
+    const title=document.getElementById('pr-title').value.trim(),price=document.getElementById('pr-price').value.trim(),kind=document.getElementById('pr-kind').value,buyUrl=document.getElementById('pr-buy').value.trim(),desc=document.getElementById('pr-desc').value.trim(),hidden=document.getElementById('pr-hidden').checked;
+    if(!title||!price||!buyUrl)return toast('Title, price and buy link are required','err');
+    if(!/^https?:\/\//i.test(buyUrl))return toast('Buy link must start with http(s)://','err');
+    const rec={id:editingProdId||Date.now(),title,price,kind,buyUrl,desc,hidden,updated:new Date().toLocaleDateString()};
+    if(pendingProdBlob){
+      const conf=getCloudConfig();
+      if(!conf.name||!conf.preset)return toast('Cloudinary not configured for product images!','err');
+      const fd=new FormData();fd.append('file',pendingProdBlob);fd.append('upload_preset',conf.preset);
+      const resp=await fetch(`https://api.cloudinary.com/v1_1/${conf.name}/image/upload`,{method:'POST',body:fd});
+      const json=await resp.json();
+      if(json.secure_url)rec.cloudUrl=json.secure_url; else throw new Error('Product image upload failed');
+    } else if(editingProdId){
+      const old=(await sGetProds()).find(p=>p.id===editingProdId);
+      if(old&&old.cloudUrl)rec.cloudUrl=old.cloudUrl;
+    }
+    const data=await sGetProds();
+    if(editingProdId){const idx=data.findIndex(p=>p.id===editingProdId);if(idx>=0)data[idx]=rec;else data.push(rec);} else data.push(rec);
+    await persistCollection('products', data);
+    toast(editingProdId?'Product updated ✓':'Product added ✓','ok');resetProdForm();renderProductsList();
+  }catch(err){console.error(err);toast('Save failed: '+err.message,'err');}});
+async function renderProductsList(){
+  revokeURLs();
+  const list=document.getElementById('products-list');
+  const data=(await sGetProds()).sort((a,b)=>a.title.localeCompare(b.title));
+  if(!data.length){list.innerHTML='<div class="empty-state"><h3>No products yet</h3><p>Add your first print or digital pack above.</p></div>';return;}
+  list.innerHTML=data.map(p=>{
+    const thumb=p.cloudUrl?'<img src="'+cloudImage(p.cloudUrl,{watermark:!!CURRENT_SETTINGS.watermark.applyProducts})+'">':'<div style="height:170px;display:flex;align-items:center;justify-content:center;background:var(--surface-2);font-weight:900;font-size:1.6rem;color:var(--faint)">'+esc((p.title||'?').slice(0,2).toUpperCase())+'</div>';
+    return '<div class="manage-item'+(p.hidden?' is-hidden':'')+'">'+thumb+
+      '<div class="manage-info"><h4>'+esc(p.title)+'</h4><small>'+esc(p.kind)+' • '+esc(p.price)+'</small></div>'+
+      '<div class="manage-actions">'+
+      '<button class="btn-small btn-view" onclick="window.open(\''+esc(p.buyUrl)+'\',\'_blank\')">Buy link</button>'+
+      '<button class="btn-small btn-edit" onclick="editProd('+p.id+')">Edit</button>'+
+      '<button class="btn-small btn-eye" onclick="toggleProd('+p.id+')">'+(p.hidden?'Show':'Hide')+'</button>'+
+      '<button class="btn-small btn-delete" onclick="removeProd('+p.id+')">Del</button>'+
+      '</div></div>';
+  }).join('');
+}
+async function editProd(id){const p=(await sGetProds()).find(x=>x.id===id);if(!p)return;editingProdId=id;pendingProdBlob=null;
+  document.getElementById('pr-title').value=p.title;document.getElementById('pr-price').value=p.price;document.getElementById('pr-kind').value=p.kind;document.getElementById('pr-buy').value=p.buyUrl;document.getElementById('pr-desc').value=p.desc||'';document.getElementById('pr-hidden').checked=!!p.hidden;document.getElementById('pr-img-text').textContent=p.cloudUrl?'Keep current image (or choose new)':'Click to choose an image';
+  document.getElementById('prod-form-title').textContent='Edit Product';document.getElementById('pr-save-btn').textContent='💾 Update Product';document.getElementById('pr-cancel-edit').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});}
+async function toggleProd(id){const data=await sGetProds();const p=data.find(x=>x.id===id);if(!p)return;p.hidden=!p.hidden;await persistCollection('products',data);renderProductsList();toast(p.hidden?'Product hidden':'Product visible','ok');}
+async function removeProd(id){if(!confirm('Delete this product?'))return;const data=(await sGetProds()).filter(x=>x.id!==id);await persistCollection('products',data);if(editingProdId===id)resetProdForm();renderProductsList();toast('Product deleted','ok');}
+
+function navLi(p,pages){const kids=kidsOf(p.id,pages);const slug=esc(p.slug);
+  if(!kids.length)return '<li><a onclick="openPage(\''+slug+'\')">'+esc(p.title)+'</a></li>';
+  return '<li class="has-sub"><a onclick="toggleSub(event,this)">'+esc(p.title)+'<span class="caret">▾</span></a><ul class="sub-menu">'+kids.map(k=>navLi(k,pages)).join('')+'</ul></li>';}
+function toggleSub(e,a){e.preventDefault();e.stopPropagation();const li=a.closest('li.has-sub');const wasOpen=li.classList.contains('open');li.parentElement.querySelectorAll(':scope > li.has-sub.open').forEach(x=>{if(x!==li)x.classList.remove('open');});li.classList.toggle('open',!wasOpen);}
+async function renderNavPages(){const all=await sGetPages();const mAll=byIdMap(all);const vis=visiblePages(all);
+  const tops=vis.filter(p=>!p.parentId||!mAll[p.parentId]).sort((a,b)=>a.title.localeCompare(b.title));
+  document.getElementById('custom-pages-li').innerHTML=tops.map(p=>navLi(p,vis)).join('');}
+
+function toggleAcc(head){head.closest('.acc-item').classList.toggle('open');}
+function renderAcc(kids,pages){return kids.map(k=>{const grand=kidsOf(k.id,pages);
+  return '<div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><h4>'+esc(k.title)+'</h4><span class="right"><a class="acc-open-link" onclick="event.stopPropagation();openPage(\''+esc(k.slug)+'\')">↗</a><span class="chev">▾</span></span></div>'+
+    '<div class="acc-body"><div class="acc-inner"><div class="acc-inner-pad prose">'+(sanitize(k.content)||'<p style="color:var(--muted)">Empty page.</p>')+(grand.length?'<div class="acc-nested">'+renderAcc(grand,pages)+'</div>':'')+'</div></div></div></div>';}).join('');}
+
+const pgEditor=document.getElementById('pg-editor');const edImgInput=document.getElementById('ed-img-input');const pgParent=document.getElementById('pg-parent');
+document.getElementById('ed-toolbar').addEventListener('mousedown',e=>{const btn=e.target.closest('button[data-cmd]');if(!btn)return;e.preventDefault();pgEditor.focus();document.execCommand(btn.dataset.cmd,false,btn.dataset.val||null);refreshToolbarState();});
+function refreshToolbarState(){document.querySelectorAll('#ed-toolbar button[data-cmd]').forEach(b=>{const c=b.dataset.cmd;if(['bold','italic','underline','insertUnorderedList','insertOrderedList'].includes(c)){try{b.classList.toggle('active',document.queryCommandState(c));}catch(_){}}});}
+pgEditor.addEventListener('keyup',refreshToolbarState);pgEditor.addEventListener('mouseup',refreshToolbarState);
+document.getElementById('ed-img-btn').addEventListener('click',()=>edImgInput.click());
+edImgInput.addEventListener('change',async function(){const f=this.files[0];if(!f)return;
+  const conf=getCloudConfig();
+  if(!conf.name||!conf.preset)return toast('Cloudinary not configured! Cannot insert image.','err');
+  const fd=new FormData();fd.append('file',f);fd.append('upload_preset',conf.preset);
+  try{
+    const resp=await fetch(`https://api.cloudinary.com/v1_1/${conf.name}/image/upload`,{method:'POST',body:fd});
+    const json=await resp.json();
+    if(json.secure_url){pgEditor.focus();document.execCommand('insertHTML',false,'<img src="'+json.secure_url+'" style="max-width:100%">');toast('Image inserted from Cloud ✓','ok');}
+    else throw new Error('Upload failed');
+  }catch(err){toast('Image upload failed: '+err.message,'err');}
+  this.value='';
+});
+pgEditor.addEventListener('paste',async e=>{const items=e.clipboardData&&e.clipboardData.items;if(!items)return;for(const it of items){if(it.type.indexOf('image')===0){e.preventDefault();const f=it.getAsFile();
+  const conf=getCloudConfig();
+  if(!conf.name||!conf.preset)return toast('Cloudinary not configured!','err');
+  const fd=new FormData();fd.append('file',f);fd.append('upload_preset',conf.preset);
+  try{
+    const resp=await fetch(`https://api.cloudinary.com/v1_1/${conf.name}/image/upload`,{method:'POST',body:fd});
+    const json=await resp.json();
+    if(json.secure_url)document.execCommand('insertHTML',false,'<img src="'+json.secure_url+'" style="max-width:100%">');
+  }catch(err){toast('Paste upload failed','err');}
+  return;}}});
+document.getElementById('ed-link-btn').addEventListener('click',()=>{const url=prompt('Enter the link URL:');if(!url)return;pgEditor.focus();const sel=window.getSelection();if(sel&&sel.toString())document.execCommand('createLink',false,url);else document.execCommand('insertHTML',false,'<a href="'+esc(url)+'" target="_blank" rel="noopener">'+esc(url)+'</a>');});
+let editingPageId=null;const pgForm=document.getElementById('page-form');const pgTitle=document.getElementById('pg-title');const pgSaveBtn=document.getElementById('pg-save-btn');const pgCancelEdit=document.getElementById('pg-cancel-edit');
+function resetPageForm(){editingPageId=null;pgForm.reset();pgEditor.innerHTML='';pgParent.value='';document.getElementById('pg-hidden').checked=false;document.getElementById('pg-form-title').textContent='Create New Page';pgSaveBtn.textContent='💾 Save Page';pgCancelEdit.classList.add('hidden');fillParentSelect(null);}
+document.getElementById('pg-reset').addEventListener('click',()=>{resetPageForm();toast('Cleared','ok');});
+pgCancelEdit.addEventListener('click',()=>{resetPageForm();toast('Edit cancelled','ok');});
+async function fillParentSelect(excludeId){const pages=await sGetPages();const blocked=new Set(excludeId?[excludeId,...descendants(excludeId,pages)]:[]);const opts=pages.filter(p=>!blocked.has(p.id)).sort((a,b)=>a.title.localeCompare(b.title));pgParent.innerHTML='<option value="">None (top-level)</option>'+opts.map(p=>'<option value="'+p.id+'">'+esc(p.title)+'</option>').join('');}
+pgForm.addEventListener('submit',async e=>{e.preventDefault();
+  try{
+    const title=pgTitle.value.trim(),content=pgEditor.innerHTML.trim();
+    if(!title)return toast('Give your page a name','err');if(!content||content==='<br>')return toast('Add some content first','err');
+    const slug=slugify(title),parentId=pgParent.value?Number(pgParent.value):0,hidden=document.getElementById('pg-hidden').checked;
+    const pages=await sGetPages();
+    if(pages.some(p=>p.slug===slug&&p.id!==editingPageId))return toast('A page with that name already exists','err');
+    const rec={id:editingPageId||Date.now(),title,slug,content,parentId,hidden,updated:new Date().toLocaleDateString()};
+    if(editingPageId){const idx=pages.findIndex(p=>p.id===editingPageId);if(idx>=0)pages[idx]=rec;else pages.push(rec);} else pages.push(rec);
+    await persistCollection('pages', pages);
+    toast(editingPageId?'Page updated ✓':'Page created ✓','ok');resetPageForm();renderPagesList();renderNavPages();
+  }catch(err){console.error(err);toast('Save failed: '+err.message,'err');}});
+async function renderPagesList(){const list=document.getElementById('pages-list');const pages=(await sGetPages()).sort((a,b)=>a.title.localeCompare(b.title));
+  if(!pages.length){list.innerHTML='<div class="empty-state"><h3>No pages yet</h3><p>Create your first page above.</p></div>';return;}
+  list.innerHTML=pages.map(p=>{const parent=p.parentId?pages.find(x=>x.id===p.parentId):null;
+    return '<div class="manage-item" style="display:flex;flex-direction:column'+(p.hidden?';opacity:.55':'')+'"><div class="manage-info" style="flex:1"><h4>'+esc(p.title)+(parent?'<span class="pill-badge">inside '+esc(parent.title)+'</span>':'')+(p.hidden?'<span class="pill-badge" style="color:var(--gold);border-color:rgba(255,207,107,.4);background:rgba(255,207,107,.12)">hidden</span>':'')+'</h4><small>/'+esc(p.slug)+' • '+p.updated+'</small><p style="color:var(--muted);font-size:.85rem;margin-top:8px">'+esc(plainPreview(p.content))+'</p></div>'+
+      '<div class="manage-actions"><button class="btn-small btn-view" onclick="openPage(\''+esc(p.slug)+'\',true)">View</button><button class="btn-small btn-edit" onclick="editPage('+p.id+')">Edit</button><button class="btn-small btn-eye" onclick="togglePage('+p.id+')">'+(p.hidden?'Show':'Hide')+'</button><button class="btn-small btn-delete" onclick="removePage('+p.id+')">Del</button></div></div>';}).join('');}
+async function editPage(id){const pages=await sGetPages();const p=pages.find(x=>x.id===id);if(!p)return;editingPageId=id;await fillParentSelect(id);
+  pgTitle.value=p.title;pgEditor.innerHTML=sanitize(p.content);pgParent.value=p.parentId?String(p.parentId):'';document.getElementById('pg-hidden').checked=!!p.hidden;
+  document.getElementById('pg-form-title').textContent='Edit Page';pgSaveBtn.textContent='💾 Update Page';pgCancelEdit.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});}
+async function togglePage(id){const pages=await sGetPages();const p=pages.find(x=>x.id===id);if(!p)return;p.hidden=!p.hidden;await persistCollection('pages',pages);renderPagesList();renderNavPages();toast(p.hidden?'Page hidden (with sub-pages)':'Page visible','ok');}
+async function removePage(id){if(!confirm('Delete this page? Its sub-pages become top-level.'))return;const pages=await sGetPages();for(const ch of kidsOf(id,pages)){ch.parentId=0;}await persistCollection('pages',pages.filter(p=>p.id!==id));if(editingPageId===id)resetPageForm();renderPagesList();renderNavPages();toast('Page deleted','ok');}
+async function openPage(slug,force){const all=await sGetPages();const mAll=byIdMap(all);const p=all.find(x=>x.slug===slug);
+  if(!p){toast('Page not found','err');return showView('home');}
+  if(!force&&!isVisible(p,mAll)){toast('This page is hidden','err');return showView('home');}
+  document.getElementById('page-title').textContent=p.title;document.getElementById('page-meta').textContent='Updated '+p.updated+(p.hidden?' • (hidden preview)':'');
+  document.getElementById('page-content').innerHTML=sanitize(p.content)||'<p style="color:var(--muted)">This page is empty.</p>';
+  const vis=visiblePages(all);const kids=kidsOf(p.id,vis);const wrap=document.getElementById('page-subs-wrap');
+  if(kids.length){wrap.classList.remove('hidden');document.getElementById('page-subs').innerHTML=renderAcc(kids,vis);}else wrap.classList.add('hidden');
+  const imgMatch=/src="([^"]+)"/.exec(p.content||'');
+  setMeta(p.title+' — Koffiart37', plainPreview(p.content), imgMatch?imgMatch[1]:DEFAULT_OG);
+  showView('page');setTimeout(initReveals,40);}
+
+const linksRows=document.getElementById('links-rows');
+function addLinkRow(label,url){const row=document.createElement('div');row.className='link-row';row.innerHTML='<input class="form-control lk-label" placeholder="Label" value="'+esc(label||'')+'"><input class="form-control lk-url" placeholder="https://..." value="'+esc(url||'')+'"><button type="button" class="rm">✕</button>';row.querySelector('.rm').onclick=()=>row.remove();linksRows.appendChild(row);}
+document.getElementById('add-link-btn').addEventListener('click',()=>addLinkRow());
+const secMethod=document.getElementById('sec-2fa-method');secMethod.addEventListener('change',()=>document.getElementById('emailjs-fields').classList.toggle('hidden',secMethod.value!=='email'));
+
+// --- WATERMARK DIRECT UPLOAD LOGIC ---
+const wmDirectInput=document.getElementById('wm-direct-file');
+const wmDirectStatus=document.getElementById('wm-direct-status');
+const wmDirectStorage=document.getElementById('wm-direct-id-storage');
+let pendingWmBlob=null;
+
+wmDirectInput.addEventListener('change', function(){
+  if(this.files[0]){
+    const f=this.files[0];
+    pendingWmBlob=f;
+    wmDirectStatus.textContent='Selected: '+f.name+' ('+fmtMB(f.size)+' MB)';
+    wmDirectStatus.style.color='var(--ok)';
+  }
+});
+
+function loadCloudConfig(){const c=getCloudConfig();document.getElementById('conf-cloud-name').value=c.name||'';document.getElementById('conf-preset').value=c.preset||'';}
+document.getElementById('save-cloud-btn').addEventListener('click',()=>{
+  const name=document.getElementById('conf-cloud-name').value.trim();
+  const preset=document.getElementById('conf-preset').value.trim();
+  if(!name||!preset)return toast('Both fields are required','err');
+  saveCloudConfig({name,preset});toast('Cloud config saved ✓','ok');
+});
+function loadSupabaseConfig(){const c=getSupabaseConfig();document.getElementById('conf-supabase-url').value=c.url||'';document.getElementById('conf-supabase-key').value=c.key||'';}
+document.getElementById('save-supabase-btn').addEventListener('click',async ()=>{
+  const url=document.getElementById('conf-supabase-url').value.trim();
+  const key=document.getElementById('conf-supabase-key').value.trim();
+  if(!url||!key)return toast('Both fields are required','err');
+  saveSupabaseConfig({url,key});
+  const success=await initSupabase();
+  if(success){toast('Connected to Cloud Database ✓','ok');await syncFromCloud();loadSettingsForm();renderNavPages();}
+  else toast('Connection failed. Check URL/Key and table name.','err');
+});
+document.getElementById('push-local-btn').addEventListener('click',async ()=>{
+  if(!supabaseClient)return toast('Connect Supabase first','err');
+  await saveData('settings', CURRENT_SETTINGS);
+  await persistCollection('media', await sGetRecs());
+  await persistCollection('pages', await sGetPages());
+  await persistCollection('products', await sGetProds());
+  toast('Local data pushed to cloud ✓','ok');
+});
+
+function loadSettingsForm(){
+  const s=CURRENT_SETTINGS;
+  loadCloudConfig();loadSupabaseConfig();
+  
+  // Reset WM direct upload state
+  pendingWmBlob=null;
+  wmDirectStatus.textContent='Click to select watermark logo...';
+  wmDirectStatus.style.color='var(--muted)';
+  wmDirectStorage.value='';
+
+  const vis=s.visibility||{};
+  document.getElementById('vis-hero').checked=!!vis.hero;
+  document.getElementById('vis-gallery').checked=!!vis.gallery;
+  document.getElementById('vis-shop').checked=!!vis.shop;
+  document.getElementById('vis-about').checked=!!vis.about;
+  document.getElementById('vis-contact').checked=vis.contact!==false;
+
+  const wm=s.watermark||{};
+  document.getElementById('wm-enabled').checked=wm.enabled!==false;
+  document.getElementById('wm-mode').value=wm.mode||'text';
+  document.getElementById('wm-text').value=wm.text||'© Koffiart37';
+  document.getElementById('wm-image-id').value=wm.imageId||'';
+  document.getElementById('wm-opacity').value=wm.opacity||55;
+  document.getElementById('wm-position').value=wm.position||'south_east';
+  document.getElementById('wm-products').checked=wm.applyProducts!==false;
+
+  const ct=s.contact||{};
+  document.getElementById('contact-service').value=ct.service||'';
+  document.getElementById('contact-template').value=ct.template||'';
+  document.getElementById('contact-key').value=ct.key||'';
+  document.getElementById('contact-to').value=ct.to||'';
+  document.getElementById('resume-url').value=s.resumeUrl||'';
+  document.getElementById('analytics-domain').value=s.analyticsDomain||'';
+
+  document.getElementById('set-hero-tag').value=s.heroTag||'';document.getElementById('set-hero-l1').value=s.heroLine1||'';document.getElementById('set-hero-l2').value=s.heroLine2||'';document.getElementById('set-hero-sub').value=s.heroSub||'';
+  document.getElementById('set-about-kicker').value=s.aboutKicker||'';document.getElementById('set-about-title').value=s.aboutTitle||'';document.getElementById('set-about-text').value=s.aboutText||'';document.getElementById('set-shop-note').value=s.shopNote||'';
+  linksRows.innerHTML='';(s.links||[]).forEach(l=>addLinkRow(l.label,l.url));if(!(s.links||[]).length)addLinkRow();
+  ['sec-cur-user','sec-cur-pass','sec-new-user','sec-new-pass','sec-conf-pass'].forEach(id=>document.getElementById(id).value='');
+  const tf=get2FA();secMethod.value=tf.method||'off';document.getElementById('sec-2fa-dest').value=tf.dest||'';document.getElementById('sec-ej-service').value=(tf.ej&&tf.ej.service)||'';document.getElementById('sec-ej-template').value=(tf.ej&&tf.ej.template)||'';document.getElementById('sec-ej-key').value=(tf.ej&&tf.ej.key)||'';document.getElementById('emailjs-fields').classList.toggle('hidden',secMethod.value!=='email');
+}
+document.getElementById('save-settings-btn').addEventListener('click',async ()=>{
+  const links=[...linksRows.querySelectorAll('.link-row')].map(r=>({label:r.querySelector('.lk-label').value.trim(),url:r.querySelector('.lk-url').value.trim()})).filter(l=>l.label&&l.url);
+  
+  // Handle Pending Watermark Upload
+  let finalWmImageId = document.getElementById('wm-image-id').value.trim();
+  if(pendingWmBlob){
+     const conf=getCloudConfig();
+     if(!conf.name||!conf.preset) return toast('Cloudinary not configured! Cannot upload watermark.','err');
+     
+     const fd=new FormData();fd.append('file',pendingWmBlob);fd.append('upload_preset',conf.preset);
+     try{
+       const resp=await fetch(`https://api.cloudinary.com/v1_1/${conf.name}/image/upload`,{method:'POST',body:fd});
+       const json=await resp.json();
+       if(json.public_id){
+         finalWmImageId = json.public_id;
+         document.getElementById('wm-image-id').value = finalWmImageId; // Update UI
+         document.getElementById('wm-mode').value = 'image'; // Auto-switch mode
+         toast('Watermark uploaded & applied ✓','ok');
+       } else {
+         throw new Error('Upload failed');
+       }
+     }catch(err){
+       console.error(err);
+       return toast('Failed to upload watermark: '+err.message,'err');
+     }
+  }
+
+  const newSettings={
+    heroTag:document.getElementById('set-hero-tag').value.trim(),
+    heroLine1:document.getElementById('set-hero-l1').value.trim(),
+    heroLine2:document.getElementById('set-hero-l2').value.trim(),
+    heroSub:document.getElementById('set-hero-sub').value.trim(),
+    aboutKicker:document.getElementById('set-about-kicker').value.trim(),
+    aboutTitle:document.getElementById('set-about-title').value.trim(),
+    aboutText:document.getElementById('set-about-text').value,
+    shopNote:document.getElementById('set-shop-note').value.trim(),
+    visibility:{
+      hero:document.getElementById('vis-hero').checked,
+      gallery:document.getElementById('vis-gallery').checked,
+      shop:document.getElementById('vis-shop').checked,
+      about:document.getElementById('vis-about').checked,
+      contact:document.getElementById('vis-contact').checked
+    },
+    watermark:{
+      enabled:document.getElementById('wm-enabled').checked,
+      mode:document.getElementById('wm-mode').value,
+      text:document.getElementById('wm-text').value.trim(),
+      imageId:finalWmImageId,
+      opacity:Number(document.getElementById('wm-opacity').value)||55,
+      position:document.getElementById('wm-position').value,
+      applyProducts:document.getElementById('wm-products').checked
+    },
+    contact:{
+      service:document.getElementById('contact-service').value.trim(),
+      template:document.getElementById('contact-template').value.trim(),
+      key:document.getElementById('contact-key').value.trim(),
+      to:document.getElementById('contact-to').value.trim()
+    },
+    resumeUrl:document.getElementById('resume-url').value.trim(),
+    analyticsDomain:document.getElementById('analytics-domain').value.trim(),
+    links:links.length?links:DEFAULT_SETTINGS.links.slice()
+  };
+  await saveData('settings', newSettings);
+  CURRENT_SETTINGS=normalizeSettings(newSettings);
+  injectAnalytics();
+  applyVisibility();
+  updateResume();
+  renderPublicHome();
+  toast('Settings Saved & Synced ✓','ok');
+});
+document.getElementById('reset-settings-btn').addEventListener('click',async ()=>{
+  if(!confirm('Reset hero/about/links/shop note to defaults? This will overwrite cloud data.'))return;
+  await saveData('settings', JSON.parse(JSON.stringify(DEFAULT_SETTINGS)));
+  CURRENT_SETTINGS=normalizeSettings(DEFAULT_SETTINGS);
+  loadSettingsForm();applyVisibility();updateResume();toast('Reset to defaults','ok');
+});
+document.getElementById('export-data-btn').addEventListener('click',async ()=>{
+  const data={settings:CURRENT_SETTINGS,media:await sGetRecs(),pages:await sGetPages(),products:await sGetProds(),exported:new Date().toISOString()};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='koffiart37-backup-'+Date.now()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('Backup exported','ok');
+});
+document.getElementById('import-data-input').addEventListener('change',async e=>{
+  const f=e.target.files[0];if(!f)return;
+  try{
+    const text=await f.text();const data=JSON.parse(text);
+    if(data.settings)await saveData('settings', data.settings);
+    if(Array.isArray(data.media))await persistCollection('media', data.media);
+    if(Array.isArray(data.pages))await persistCollection('pages', data.pages);
+    if(Array.isArray(data.products))await persistCollection('products', data.products);
+    toast('Backup imported ✓ reloading…','ok');setTimeout(()=>location.reload(),900);
+  }catch(err){toast('Import failed: '+err.message,'err');}
+  e.target.value='';
+});
+document.getElementById('creds-form').addEventListener('submit',async e=>{e.preventDefault();
+  try{
+    const cu=document.getElementById('sec-cur-user').value.trim(),cp=document.getElementById('sec-cur-pass').value,nu=document.getElementById('sec-new-user').value.trim(),np=document.getElementById('sec-new-pass').value,cf=document.getElementById('sec-conf-pass').value;
+    const creds=await getCreds();
+    if(cu!==creds.user||(await sha256(cp))!==creds.hash)return toast('Current credentials wrong','err');
+    if(np.length<6)return toast('Password min 6 chars','err');if(np!==cf)return toast('Passwords do not match','err');
+    saveCreds({user:nu,hash:await sha256(np)});e.target.reset();toast('Credentials updated ✓','ok');checkDefaultCreds();
+  }catch(err){console.error(err);toast('Update failed: '+err.message,'err');}});
+document.getElementById('twofa-settings-form').addEventListener('submit',async e=>{e.preventDefault();
+  const method=secMethod.value,dest=document.getElementById('sec-2fa-dest').value.trim();
+  if(method!=='off'&&!dest)return toast('Enter email or phone for codes','err');
+  if(method==='email'&&dest&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dest))return toast('Email looks invalid','err');
+  if(method==='phone'&&dest&&!/^[+\d][\d\s()-]{5,}$/.test(dest))return toast('Phone looks invalid','err');
+  save2FA({method,dest,ej:{service:document.getElementById('sec-ej-service').value.trim(),template:document.getElementById('sec-ej-template').value.trim(),key:document.getElementById('sec-ej-key').value.trim()}});
+  toast(method==='off'?'2FA disabled':'2FA enabled ('+method+') ✓','ok');});
+
+document.getElementById('contact-form').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const ct=CURRENT_SETTINGS.contact||{};
+  if(!ct.service||!ct.template||!ct.key)return toast('Contact form not configured by admin yet.','err');
+  const name=document.getElementById('cf-name').value.trim();
+  const email=document.getElementById('cf-email').value.trim();
+  const message=document.getElementById('cf-message').value.trim();
+  if(!name||!email||!message)return toast('Fill all fields','err');
+  const btn=document.getElementById('cf-btn');btn.disabled=true;btn.textContent='Sending…';
+  try{
+    const res=await fetch('https://api.emailjs.com/api/v1.0/email/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({service_id:ct.service,template_id:ct.template,user_id:ct.key,template_params:{to_email:ct.to,from_name:name,reply_to:email,message:message}})});
+    if(!res.ok) throw new Error('EmailJS '+res.status);
+    e.target.reset();toast('Message sent ✓','ok');
+  }catch(err){console.error(err);toast('Send failed: '+err.message,'err');}
+  finally{btn.disabled=false;btn.textContent='Send Message';}
+});
+
+async function updateStats(){const data=await sGetRecs(),pages=await sGetPages(),prods=await sGetProds();
+  document.getElementById('stat-img').textContent=data.filter(i=>i.type==='image'&&!i.hidden).length;
+  document.getElementById('stat-vid').textContent=data.filter(i=>i.type==='video'&&!i.hidden).length;
+  document.getElementById('stat-prod').textContent=prods.filter(p=>p.hidden===false).length;
+  document.getElementById('stat-pages').textContent=visiblePages(pages).length;}
+async function checkDefaultCreds(){const c=await getCreds();const defHash=await sha256('admin123');document.getElementById('default-cred-warning').classList.toggle('hidden', !(c.user==='admin' && c.hash===defHash));}
+
+window.addEventListener('DOMContentLoaded',async()=>{
+  try{await openDB();}catch(e){console.error('DB open failed:',e);}
+  await getCreds();
+  CURRENT_SETTINGS=normalizeSettings(lsGet('koffi_settings',{}));
+  const connected=await initSupabase();
+  if(connected) await syncFromCloud();
+  injectAnalytics();
+  await renderNavPages();
+  updateResume();
+  await checkDefaultCreds();
+  const lb=document.getElementById('lightbox');if(localStorage.getItem('koffi_letterbox')!=='off')lb.classList.add('letterbox');syncLbBtn();
+  showView(localStorage.getItem('koffi_logged_in')==='true'?'dashboard':'home');
+});
+</script>
+</body>
+</html>
